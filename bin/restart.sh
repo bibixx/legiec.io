@@ -1,5 +1,6 @@
 #!/bin/bash
 git fetch --all &&
 git reset --hard origin/master &&
-mkdir -p /home/www/www/root &&
-cp favicon.png index.html robots.txt spain.mp4 ~/www/root
+mkdir -p /home/www/html/root &&
+rm -rf /home/www/html/root/* &&
+rsync --quiet -av --progress --exclude="bin" ./ /home/www/html/root/
