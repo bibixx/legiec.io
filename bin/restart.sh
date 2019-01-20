@@ -1,5 +1,4 @@
 #!/bin/bash
 git fetch --all &&
 git reset --hard origin/master &&
-docker-compose down &&
-docker-compose up -d --build
+cp favicon.png index.html robots.txt spain.mp4 ~/www/root
