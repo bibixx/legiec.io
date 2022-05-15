@@ -1,7 +1,6 @@
-export const GOOGLE_SERVICE_ACCOUNT_EMAIL =
-  process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL ?? '';
-export const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY ?? '';
-export const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID ?? '';
+export const AIRTABLE_KEY = process.env.AIRTABLE_KEY ?? '';
+export const AIRTABLE_BASE = process.env.AIRTABLE_BASE ?? '';
+export const AIRTABLE_URL = process.env.AIRTABLE_URL ?? '';
 
 export const BASIC_AUTH_USER = process.env.BASIC_AUTH_USER ?? '';
 export const BASIC_AUTH_PASSWORD = process.env.BASIC_AUTH_PASSWORD ?? '';

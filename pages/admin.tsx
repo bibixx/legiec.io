@@ -15,7 +15,7 @@ import { basicAuthCheck } from 'utils/basicAuthCheck';
 import { makeRequest } from 'utils/makeRequest';
 import { isValidSlug } from 'utils/validators/createUrl.utils';
 import { CreateUrlResponseDTO } from './api/url';
-import { GOOGLE_SHEET_ID } from 'constants/env';
+import { AIRTABLE_URL } from 'constants/env';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,10 +24,10 @@ const defaultFormValues = { url: '', customSlug: '' };
 const getUrl = (origin: string, slug: string) => `${origin}/${slug}`;
 
 interface Props {
-  sheetId: string;
+  airtableUrl: string;
 }
 
-const Admin = ({ sheetId }: Props) => {
+const Admin = ({ airtableUrl }: Props) => {
   const [{ url, customSlug }, setFormData] = useState(defaultFormValues);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>();
@@ -49,7 +49,6 @@ const Admin = ({ sheetId }: Props) => {
     };
 
   const isSlugValid = customSlug === '' || isValidSlug(customSlug);
-  const googleSheetsLink = `https://docs.google.com/spreadsheets/d/${sheetId}`;
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -87,8 +86,8 @@ const Admin = ({ sheetId }: Props) => {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand>Link Shortener Admin</Navbar.Brand>
-          <Navbar.Text as="a" target="_blank" href={googleSheetsLink}>
-            Google Sheets
+          <Navbar.Text as="a" target="_blank" href={airtableUrl}>
+            Airtable
           </Navbar.Text>
         </Container>
       </Navbar>
@@ -174,7 +173,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
 
   return {
     props: {
-      sheetId: GOOGLE_SHEET_ID,
+      airtableUrl: AIRTABLE_URL,
     },
   };
 };

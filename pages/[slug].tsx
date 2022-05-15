@@ -1,6 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import { URLRow } from 'types/GoogleSheets';
-import { getDoc } from 'utils/getDoc';
+import { getLinkRow } from 'utils/getAirtableRow';
 
 const Slug: NextPage = () => null;
 export default Slug;
@@ -20,13 +19,9 @@ export const getServerSideProps: GetServerSideProps<{}, Params> = async (
     };
   }
 
-  const doc = await getDoc();
-  const sheet = doc.sheetsByIndex[0];
-  const rows = (await sheet.getRows()) as URLRow[];
+  const airtableRow = await getLinkRow(slug);
 
-  const urlRow = rows.find(({ SLUG }) => SLUG === slug);
-
-  if (!urlRow || urlRow.ACTIVE !== 'TRUE') {
+  if (!airtableRow || !airtableRow.fields.active) {
     return {
       notFound: true,
     };
@@ -34,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<{}, Params> = async (
 
   return {
     redirect: {
-      destination: urlRow.URL,
+      destination: airtableRow.fields.url,
       permanent: true,
     },
     props: {},

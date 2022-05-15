@@ -1,15 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { URLRow } from 'types/GoogleSheets';
+import { UrlRow } from 'types/Airtable';
 import { basicAuthCheck } from 'utils/basicAuthCheck';
-import { formatDateToExcel } from 'utils/formatDateToExcel';
-import { getDoc } from 'utils/getDoc';
+import { getAirtableBase } from 'utils/getAirtableBase';
+import { getLinkRow } from 'utils/getAirtableRow';
+import { getSlug } from 'utils/getSlug';
 import { validateCreateUrl } from 'utils/validators/createUrl';
+import { isValidSlug } from 'utils/validators/createUrl.utils';
 
 export interface CreateUrlResponseDTO {
   URL: string;
   SLUG: string;
-  CREATED_AT: number;
-  ACTIVE: 'TRUE' | 'FALSE' | '';
+  ACTIVE: boolean;
+  CREATED_AT: string;
 }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -27,33 +29,40 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const { data } = result;
 
-  const doc = await getDoc();
-  const sheet = doc.sheetsByIndex[0];
+  if (data.SLUG !== undefined && isValidSlug(data.SLUG)) {
+    return res.status(422).json({ error: 'Specified SLUG is invalid' });
+  }
 
-  const rows = (await sheet.getRows()) as URLRow[];
-  const existingSlugs = rows.map(({ SLUG }) => SLUG);
+  const airtableRow =
+    data.SLUG === undefined ? undefined : await getLinkRow(data.SLUG);
 
-  if (data.SLUG !== undefined && existingSlugs.indexOf(data.SLUG) >= 0) {
+  if (airtableRow !== undefined) {
     return res
       .status(422)
       .json({ error: 'Redirect with specified SLUG already exists' });
   }
 
+  const links = getAirtableBase();
+
   const now = new Date();
-  const newRowData = {
-    URL: data.URL,
-    CREATED_AT: formatDateToExcel(now),
-    ...(data.SLUG !== undefined && data.SLUG !== '' ? { SLUG: data.SLUG } : {}),
+  const newRowData: UrlRow = {
+    url: data.URL,
+    slug: data.SLUG !== undefined && data.SLUG !== '' ? data.SLUG : getSlug(),
+    active: true,
+    createdAt: now.toISOString(),
   };
 
-  const newRow = (await sheet.addRow(newRowData)) as URLRow;
-  await newRow.save();
+  const [createdRow] = await links.create([
+    {
+      fields: newRowData,
+    },
+  ]);
 
   const responseData: CreateUrlResponseDTO = {
-    URL: newRow.URL,
-    SLUG: newRow.SLUG,
-    CREATED_AT: now.getTime(),
-    ACTIVE: newRow.ACTIVE,
+    URL: createdRow.fields.url,
+    SLUG: createdRow.fields.slug,
+    ACTIVE: createdRow.fields.active,
+    CREATED_AT: createdRow.fields.createdAt,
   };
 
   res.status(200).json(responseData);
