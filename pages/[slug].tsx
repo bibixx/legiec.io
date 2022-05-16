@@ -27,6 +27,11 @@ export const getServerSideProps: GetServerSideProps<{}, Params> = async (
     };
   }
 
+  context.res.setHeader(
+    'Cache-Control',
+    's-maxage=60, stale-while-revalidate=604800',
+  );
+
   return {
     redirect: {
       destination: airtableRow.fields.url,
