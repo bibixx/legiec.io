@@ -21,7 +21,10 @@ const respondWithMatomo = (
   req: GetServerSidePropsContext['req'],
   resolvedUrl: string,
 ): GetServerSideReturnValue => {
-  const matomo = new MatomoTracker(MATOMO_SITE_ID, `${MATOMO_URL}matomo.php`);
+  const matomo = new MatomoTracker(
+    MATOMO_SITE_ID,
+    `https:${MATOMO_URL}matomo.php`,
+  );
 
   const domain = req.headers['x-vercel-deployment-url'];
   const protocol = req.headers['x-forwarded-proto'];
