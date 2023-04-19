@@ -29,7 +29,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const { data } = result;
 
-  if (data.SLUG !== undefined && isValidSlug(data.SLUG)) {
+  if (data.SLUG !== undefined && !isValidSlug(data.SLUG)) {
     return res.status(422).json({ error: 'Specified SLUG is invalid' });
   }
 
