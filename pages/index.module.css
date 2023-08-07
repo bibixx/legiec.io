@@ -24,10 +24,22 @@
   font-size: 3rem;
 }
 
+.home nav svg {
+  fill: #eee;
+  height: 3rem;
+  width: 3rem;
+}
+
+.home nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
 .home nav a {
-  margin-left: 2vh;
+  display: flex;
   opacity: 0.5;
   transition: opacity .1s ease-in-out;
+  text-decoration: none;
 }
 
 .home nav a:hover, .home nav a:focus {
