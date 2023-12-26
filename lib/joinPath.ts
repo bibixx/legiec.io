@@ -16,5 +16,5 @@ export function joinPath(...elements: string[]) {
     }
   }
 
-  return elements.join("/");
+  return preparedElements.join("/");
 }
