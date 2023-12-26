@@ -24,4 +24,3 @@ export const createLinkValidator = z.object({
 export const deleteLinkValidator = z.object({
   slug: z.string(),
 });
-export const emptyValidator = z.object({});

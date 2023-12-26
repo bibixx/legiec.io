@@ -1,6 +1,5 @@
 import { createClient } from "@vercel/kv";
 import { LinkData } from "types/LinkData";
-import { DATA } from "./seed.csv";
 import { mapAndStripNullable } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import { concurrent } from "@/lib/concurrent";
@@ -32,25 +31,6 @@ export class LinkService {
 
   private revalidateSlug(slug: string) {
     return revalidatePath("/" + encodeURIComponent(slug));
-  }
-
-  public async resetData() {
-    const slugs = await this.client.smembers(this.getLinkIndexKey());
-    if (slugs != null && slugs.length > 0) {
-      await this.client.del(
-        this.getLinkIndexKey(),
-        ...slugs.map((s) => this.getLinkKey(s))
-      );
-    }
-
-    await this.client.sadd(
-      this.getLinkIndexKey(),
-      ...DATA.map((data) => data.slug)
-    );
-
-    await this.client.mset<LinkData>(
-      Object.fromEntries(DATA.map((d) => [this.getLinkKey(d.slug), d]))
-    );
   }
 
   public async updateLink(slug: string, data: Partial<InputLinkData>) {

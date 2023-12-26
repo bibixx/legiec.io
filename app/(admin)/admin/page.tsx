@@ -1,8 +1,8 @@
 "use server";
 
 import { LinkService } from "@/services/LinkService";
-import { ResetButton } from "./ResetButton";
 import { LinksTable } from "./LinksTable";
+import { Button } from "@/components/ui/button";
 
 export default async function AdminPage() {
   const linkService = new LinkService();
@@ -12,8 +12,12 @@ export default async function AdminPage() {
     <>
       <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
         <div className="container flex h-14 items-center font-bold w-full justify-between">
-          <h1 className="select-none">Link Shortener Admin</h1>
-          <ResetButton />
+          <div className="sm:hidden block" />
+          <h1 className="select-none hidden sm:block">Link Shortener Admin</h1>
+
+          <Button asChild variant="outline">
+            <a href="/api/auth/logout">Logout</a>
+          </Button>
         </div>
       </header>
       <main className="container w-full mx-auto my-8">

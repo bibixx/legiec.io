@@ -6,18 +6,8 @@ import {
   createLinkValidator,
   deleteLinkValidator,
   updateLinkValidator,
-  emptyValidator,
 } from "./validators";
 import { withUserFacingErrorAndValidation } from "@/lib/middlewares";
-
-export const resetLinks = withUserFacingErrorAndValidation(
-  emptyValidator,
-  async () => {
-    const linkService = new LinkService();
-    await linkService.resetData();
-    revalidatePath("/admin");
-  }
-);
 
 export const updateLink = withUserFacingErrorAndValidation(
   updateLinkValidator,
