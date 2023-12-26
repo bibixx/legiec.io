@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { Metadata } from "next";
 
 interface Icon {
   url: string;
@@ -89,3 +88,5 @@ export default function Home() {
     </div>
   );
 }
+
+export const dynamic = "force-static";
