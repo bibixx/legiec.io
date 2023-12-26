@@ -50,7 +50,7 @@ export class MatomoService {
       }),
     };
 
-    this.track(trackOptions);
+    return this.track(trackOptions);
   }
 
   /**

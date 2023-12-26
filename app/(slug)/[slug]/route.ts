@@ -13,7 +13,7 @@ export async function GET(
   const dataForSlug = await linksService.getLink(slug);
 
   if (dataForSlug != null && dataForSlug.active) {
-    matomoService.trackSlug(slug, {
+    await matomoService.trackSlug(slug, {
       found: true,
       destination: dataForSlug.url,
     });
@@ -22,7 +22,7 @@ export async function GET(
     return;
   }
 
-  matomoService.trackSlug(slug, { found: false });
+  await matomoService.trackSlug(slug, { found: false });
   return new Response("Not found", {
     status: 404,
   });
