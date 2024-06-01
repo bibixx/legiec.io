@@ -11,6 +11,8 @@ const TooltipRoot = TooltipPrimitive.Root;
 
 const TooltipTrigger = TooltipPrimitive.Trigger;
 
+const TooltipPortal = TooltipPrimitive.Portal;
+
 const TooltipContent = React.forwardRef<
   React.ElementRef<typeof TooltipPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
@@ -80,15 +82,17 @@ const Tooltip = (props: TooltipProps) => {
 
   return (
     <TooltipRoot {...rootProps}>
-      <TooltipContent
-        {...contentProps}
-        className={cn(props.className, { "select-none": !props.allowSelect })}
-      >
-        {props.content}
-      </TooltipContent>
+      <TooltipPortal>
+        <TooltipContent
+          {...contentProps}
+          className={cn(props.className, { "select-none": !props.allowSelect })}
+        >
+          {props.content}
+        </TooltipContent>
+      </TooltipPortal>
       <TooltipTrigger asChild>{props.children}</TooltipTrigger>
     </TooltipRoot>
   );
 };
 
-export { Tooltip, TooltipProvider };
+export { Tooltip, TooltipProvider, TooltipPortal, TooltipTrigger };

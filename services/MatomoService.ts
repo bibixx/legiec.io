@@ -62,6 +62,10 @@ export class MatomoService {
    * @param {(String|Object)} options URL to track or options (must contain URL as well)
    */
   private track(options: { url: string }) {
+    if (!this.trackerUrl) {
+      return;
+    }
+
     const target = new URL(this.trackerUrl);
     target.searchParams.set("idsite", this.siteId);
     target.searchParams.set("rec", "1");

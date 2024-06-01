@@ -1,0 +1,103 @@
+.noise {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 99999999;
+}
+
+.noise .noiseImageWrapper {
+  position: absolute;
+  object-fit: fill;
+  max-width: none;
+  height: 200%;
+  width: 200%;
+  animation: animateGrain 16s steps(10) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .noise .noiseImageWrapper {
+    animation: none;
+  }
+}
+
+:global(.dark) .noiseForText {
+  mix-blend-mode: multiply;
+}
+
+:global(.dark) .noiseForText .noiseImageWrapper {
+  opacity: 0.1;
+  filter: brightness(5.5) contrast(1);
+}
+
+:global(.dark) .noiseForRest {
+  mix-blend-mode: screen;
+}
+
+:global(.dark) .noiseForRest .noiseImageWrapper {
+  opacity: 0.05;
+  filter: brightness(1.5) contrast(1);
+}
+
+.noiseForText {
+  mix-blend-mode: lighten;
+}
+
+.noiseForText .noiseImageWrapper {
+  opacity: 0.1;
+  filter: brightness(5.5) contrast(1);
+}
+
+.noiseForRest {
+  mix-blend-mode: darken;
+}
+
+.noiseForRest .noiseImageWrapper {
+  opacity: 0.05;
+  filter: brightness(3) contrast(1) invert(1);
+}
+
+@keyframes animateGrain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -10%);
+  }
+  20% {
+    transform: translate(-15%, -20%);
+  }
+  30% {
+    transform: translate(-5%, -10%);
+  }
+  40% {
+    transform: translate(-15%, -20%);
+  }
+  50% {
+    transform: translate(-5%, -10%);
+  }
+  60% {
+    transform: translate(-15%, -20%);
+  }
+  70% {
+    transform: translate(-5%, -10%);
+  }
+  80% {
+    transform: translate(-15%, -20%);
+  }
+  90% {
+    transform: translate(-5%, -10%);
+  }
+  100% {
+    transform: translate(-15%, -20%);
+  }
+}
