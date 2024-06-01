@@ -23,6 +23,10 @@ export default function RootLayout({
         className={cn(clashDisplay.variable, inter.variable)}
         suppressHydrationWarning
       >
+        <head>
+          <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64" />
+          <link rel="shortcut icon" href="/favicon.ico" />
+        </head>
         <Matomo />
         <body>
           <ThemeProvider
