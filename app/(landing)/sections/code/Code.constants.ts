@@ -5,6 +5,11 @@ import traceThatSrc from "@/assets/code/trace-that.png";
 import obejrzyjSeSrc from "@/assets/code/obejrzyj-se.png";
 import charDetectiveSrc from "@/assets/code/char-detective.png";
 import pjaitSrc from "@/assets/code/pjait.png";
+import calendarSyncSrc from "@/assets/code/calendar-sync.png";
+import losoweHasloSrc from "@/assets/code/losowe-haslo.png";
+import reactAdobeAnimateSrc from "@/assets/code/react-adobe-animate.png";
+import tabPinnerSrc from "@/assets/code/tab-pinner.png";
+import archipelagFizykiSrc from "@/assets/code/archipelag-fizyki.png";
 
 import { APOSTROPHE, TM_SIGN } from "@/lib/text";
 import { StaticImageData } from "next/image";
@@ -60,20 +65,20 @@ export const PROJECTS: Project[] = [
     title: "Archipelag Fizyki",
     subtitle: "Interactive Physics Experiments",
     url: "https://zpe.gov.pl/szukaj?query=&stage=E4&subject=Fizyka+LICEUM/TECHNIKUM",
-    img: "https://place-hold.it/1600x900&fontsize=0",
+    img: archipelagFizykiSrc,
   },
   {
     title: "Tab Pinner",
     subtitle: "Pin Tabs in Chrome",
     url: "https://chrome.google.com/webstore/detail/tab-pinner/mcclikmfcmcpejkaobpfkmmbekbhedoi",
-    img: "https://place-hold.it/1600x900&fontsize=0",
+    img: tabPinnerSrc,
     github: "https://github.com/bibixx/tab-pinner",
   },
   {
     title: "React Adobe Animate",
     subtitle: "Interactive Physics Experiments",
     url: "https://github.com/bibixx/react-adobe-animate",
-    img: "https://place-hold.it/1600x900&fontsize=0",
+    img: reactAdobeAnimateSrc,
   },
   {
     title: "PJAIT Projects",
@@ -85,14 +90,14 @@ export const PROJECTS: Project[] = [
     title: "losowehaslo.pl",
     subtitle: `Polish Words Password Generator`,
     url: "https://losowehaslo.pl",
-    img: "https://place-hold.it/1600x900&fontsize=0",
+    img: losoweHasloSrc,
     github: "https://github.com/bibixx/losowehaslo",
   },
   {
     title: "PJAIT Class Schedule Sync",
     subtitle: `Sync your calendar with PJAIT${APOSTROPHE}s schedule`,
     url: "https://github.com/bibixx/pjatk-ical-sync",
-    img: "https://place-hold.it/1600x900&fontsize=0",
+    img: calendarSyncSrc,
   },
   {
     title: "tracethat.dev",
