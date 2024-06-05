@@ -3,6 +3,7 @@
 import { LinkService } from "@/services/LinkService";
 import { LinksTable } from "./LinksTable";
 import { Button } from "@/components/ui/button";
+import { ThemeButton } from "./components/ThemeButton";
 
 export default async function AdminPage() {
   const linkService = new LinkService();
@@ -17,11 +18,14 @@ export default async function AdminPage() {
             Link Shortener Admin
           </h1>
 
-          <Button asChild variant="outline">
-            <a href="/api/auth/logout" className="mr-2">
-              Logout
-            </a>
-          </Button>
+          <div className="flex items-center gap-2">
+            <ThemeButton />
+            <Button asChild variant="outline">
+              <a href="/api/auth/logout" className="mr-2">
+                Logout
+              </a>
+            </Button>
+          </div>
         </div>
       </header>
       <main className="container w-full mx-auto my-8">
