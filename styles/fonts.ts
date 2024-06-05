@@ -15,5 +15,5 @@ export const inter = localFont({
   ],
   weight: "100 900",
   display: "swap",
-  variable: "--font-general-sans",
+  variable: "--font-inter",
 });

@@ -62,11 +62,6 @@ const config: Config = {
           hover: "hsl(var(--link-hover))",
         },
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -82,7 +77,7 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        sans: ["var(--font-general-sans)"],
+        sans: ["var(--font-inter)"],
         display: ["var(--font-clash-display)"],
       },
     },

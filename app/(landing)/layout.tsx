@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/styles/landing.css";
+import "@/styles/globals.css";
 import { Matomo } from "@/components/Matomo";
 import { cn } from "@/lib/utils";
 import { clashDisplay, inter } from "@/styles/fonts";

@@ -51,7 +51,7 @@ export function DataTable({ columns, links, onCreate }: DataTableProps) {
   });
 
   return (
-    <div className="rounded-md border bg-white">
+    <div className="rounded-md border bg-card">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

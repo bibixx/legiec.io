@@ -10,13 +10,17 @@ export default async function AdminPage() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <header className="sticky top-0 z-50 w-full border-b dark:bg-background/75 bg-background/65 backdrop-blur-lg">
         <div className="container flex h-14 items-center font-bold w-full justify-between">
           <div className="sm:hidden block" />
-          <h1 className="select-none hidden sm:block">Link Shortener Admin</h1>
+          <h1 className="select-none hidden sm:block font-display text-2xl ml-2">
+            Link Shortener Admin
+          </h1>
 
           <Button asChild variant="outline">
-            <a href="/api/auth/logout">Logout</a>
+            <a href="/api/auth/logout" className="mr-2">
+              Logout
+            </a>
           </Button>
         </div>
       </header>
