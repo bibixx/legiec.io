@@ -61,9 +61,9 @@ export class MatomoService {
    *
    * @param {(String|Object)} options URL to track or options (must contain URL as well)
    */
-  private track(options: { url: string }): Promise<Response | undefined> {
+  private track(options: { url: string }) {
     if (!this.trackerUrl) {
-      return Promise.resolve(undefined);
+      return;
     }
 
     const target = new URL(this.trackerUrl);
