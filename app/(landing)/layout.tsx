@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 
 export const metadata: Metadata = {
   title: "Bartek Legięć | legiec.io",
+  metadataBase: new URL("https://legiec.io"),
   icons: [
     {
       url: "/favicon.png",
