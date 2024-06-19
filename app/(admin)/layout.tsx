@@ -27,6 +27,7 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
+          storageKey="admin-theme"
         >
           <TooltipProvider delayDuration={300}>{children}</TooltipProvider>
           <Toaster />
