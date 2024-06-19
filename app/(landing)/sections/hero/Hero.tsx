@@ -8,10 +8,10 @@ export const Hero = () => {
       <header className="flex flex-col-reverse">
         <div
           className={cn(
-            "container mx-auto sticky bottom-8 sm:bottom-16 my-8 z-10"
+            "container mx-auto sticky bottom-8 sm:bottom-16 my-8 z-10 pointer-events-none"
           )}
         >
-          <div className="inline-grid px-4 -mx-4 pt-8 pb-3 -my-2 sm:px-8 sm:-mx-8 sm:pt-4 sm:pb-7 sm:-my-4 dark:bg-background/75 bg-background/65 backdrop-blur-lg rounded-md motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none slide-in-from-bottom-1/4 fade-in">
+          <div className="inline-grid px-4 -mx-4 pt-8 pb-3 -my-2 sm:px-8 sm:-mx-8 sm:pt-4 sm:pb-7 sm:-my-4 dark:bg-background/75 bg-background/65 backdrop-blur-lg rounded-md motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none slide-in-from-bottom-1/4 fade-in pointer-events-auto">
             <h1 className="inline-block font-display font-bold text-6xl sm:text-9xl mb-4 [word-spacing:0.15em]">
               Bartek Legięć
             </h1>
@@ -50,7 +50,7 @@ export const Hero = () => {
 
         <div className="h-[100vh] w-full relative pointer-events-none">
           <div className="inline-flex gap-3 sticky top-2 left-0 m-2 p-2 z-10 rounded-md items-center backdrop-blur-lg backdrop-brightness-75 pointer-events-auto motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-500 fade-in">
-            <Contact className="w-8 fill-foreground-contrast" />
+            <Contact className="w-8 fill-foreground-contrast text-foreground-contrast" />
           </div>
           <figure className="absolute top-0 left-0 h-full w-full">
             <video
