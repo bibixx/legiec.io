@@ -1,8 +1,13 @@
 import { APOSTROPHE, BULLET, NON_BREAKING_HYPHEN } from "@/lib/text";
 import { cn } from "@/lib/utils";
 import { Contact } from "../contact/Contact";
+import { ContactMeans, Hero as CMSHero } from "@/lib/cms";
 
-export const Hero = () => {
+interface HeroProps {
+  contactMeans: ContactMeans[];
+  hero: CMSHero;
+}
+export const Hero = ({ contactMeans, hero }: HeroProps) => {
   return (
     <>
       <header className="flex flex-col-reverse">
@@ -13,44 +18,22 @@ export const Hero = () => {
         >
           <div className="inline-grid px-4 -mx-4 pt-8 pb-3 -my-2 sm:px-8 sm:-mx-8 sm:pt-4 sm:pb-7 sm:-my-4 dark:bg-background/75 bg-background/65 backdrop-blur-lg rounded-md motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none slide-in-from-bottom-1/4 fade-in pointer-events-auto">
             <h1 className="inline-block font-display font-bold text-6xl sm:text-9xl mb-4 [word-spacing:0.15em]">
-              Bartek Legięć
+              {hero.heading}
             </h1>
 
-            <div className="inline-flex flex-col gap-2 sm:text-xl font-semibold text-foreground/80 select-none">
-              <span>
-                Senior Product Engineer at{" "}
-                <a
-                  href="https://craft.do/"
-                  className="link-text"
-                  target="_blank"
-                >
-                  Craft Docs
-                </a>
-                , co{NON_BREAKING_HYPHEN}founder of{" "}
-                <a
-                  href="https://bbear.dev/"
-                  className="link-text"
-                  target="_blank"
-                >
-                  Bodging Bear
-                </a>{" "}
-                and{" "}
-                <a
-                  href="https://zium.app/"
-                  className="link-text"
-                  target="_blank"
-                >
-                  zium.app
-                </a>
-                .
-              </span>
-            </div>
+            <div
+              className="inline-flex flex-col gap-2 sm:text-xl font-semibold text-foreground/80 select-none link-text-wrapper"
+              dangerouslySetInnerHTML={{ __html: hero.subheading }}
+            />
           </div>
         </div>
 
         <div className="h-[100vh] w-full relative pointer-events-none">
           <div className="inline-flex gap-3 sticky top-2 left-0 m-2 p-2 z-10 rounded-md items-center backdrop-blur-lg backdrop-brightness-75 pointer-events-auto motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-500 fade-in">
-            <Contact className="w-8 fill-foreground-contrast text-foreground-contrast" />
+            <Contact
+              contactMeans={contactMeans}
+              className="w-8 fill-foreground-contrast text-foreground-contrast"
+            />
           </div>
           <figure className="absolute top-0 left-0 h-full w-full">
             <video

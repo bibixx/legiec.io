@@ -1,61 +1,30 @@
 import { cn } from "@/lib/utils";
 import { ComponentProps } from "react";
-import { Talks } from "./sections/talks/Talks";
 import { Hero } from "./sections/hero/Hero";
 import { Contact } from "./sections/contact/Contact";
 import { STAR } from "@/lib/text";
-import { Teach } from "./sections/teach/Teach";
-import { Code } from "./sections/code/Code";
-import { Write } from "./sections/write/Write";
+import { getSections } from "@/lib/cms";
+import { Section } from "../../components/landing/section/Section";
 
-export default function Home() {
+export default async function Home() {
+  const { sections, contactMeans, hero } = await getSections();
+
   return (
     <div className="w-full">
-      <Hero />
+      <Hero contactMeans={contactMeans} hero={hero} />
 
       <main className="container mx-auto">
-        <Section className="mt-12" id="code">
-          <H2>
-            I <H2Highlight>code</H2Highlight>&nbsp;
-            <H2Caption>a lot</H2Caption>
-          </H2>
-          <main>
-            <Code />
-          </main>
-        </Section>
-        <Section id="talks">
-          <H2>
-            I <H2Highlight>talk</H2Highlight> <H2Caption>a bit</H2Caption>
-          </H2>
-          <main>
-            <Talks />
-          </main>
-        </Section>
-        <Section id="teach">
-          <H2>
-            I <H2Highlight>teach</H2Highlight> <H2Caption>from love</H2Caption>
-          </H2>
-          <main>
-            <Teach />
-          </main>
-        </Section>
-        <Section>
-          <H2>
-            I <H2Highlight>write</H2Highlight>{" "}
-            <H2Caption>occasionally</H2Caption>
-          </H2>
-          <main>
-            <Write />
-          </main>
-        </Section>
-        <Section id="contact">
+        {sections.map((section) => (
+          <Section key={section.id} section={section} />
+        ))}
+        <SectionWrapper id="contact">
           <H2>
             I <H2Highlight>chat</H2Highlight> <H2Caption>at</H2Caption>
           </H2>
           <main className="flex gap-5">
-            <Contact className="w-12" />
+            <Contact className="w-12" contactMeans={contactMeans} />
           </main>
-        </Section>
+        </SectionWrapper>
       </main>
       <footer className="text-center select-none text-xs mt-64 mb-24">
         <a
@@ -94,7 +63,7 @@ const H2Highlight = ({ className, ...props }: ComponentProps<"strong">) => (
   <strong className={cn("text-primary font-bold", className)} {...props} />
 );
 
-const Section = ({ className, ...props }: ComponentProps<"section">) => (
+const SectionWrapper = ({ className, ...props }: ComponentProps<"section">) => (
   <section className={cn("my-24 scroll-my-8", className)} {...props} />
 );
 

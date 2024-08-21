@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 export interface GridItem {
   id: string;
   url: string;
-  img: StaticImageData | string;
+  img: { alt?: string; src: StaticImageData | string };
   title: ReactNode;
   actions?: ReactNode;
 }
@@ -36,9 +36,10 @@ const Box = ({ item }: BoxProps) => {
       >
         <Img
           className="aspect-video absolute top-0 left-0 w-full h-full object-fill"
-          src={item.img}
+          src={item.img.src}
+          alt=""
         />
-        <Img className="aspect-video relative" src={item.img} />
+        <Img className="aspect-video relative" src={item.img.src} alt="" />
       </a>
 
       <footer className="text-foreground-contrast w-full font-semibold text-center z-10 relative -mt-4">
@@ -66,16 +67,19 @@ const Box = ({ item }: BoxProps) => {
 
 interface ImgProps {
   src: StaticImageData | string;
+  alt?: string;
   className?: string;
 }
 
-const Img = ({ src, className }: ImgProps) => {
+const Img = ({ src, className, alt }: ImgProps) => {
   if (typeof src === "string") {
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img className={className} src={src} alt="" draggable={false} />
+      <img className={className} src={src} alt={alt || ""} draggable={false} />
     );
   }
 
-  return <Image className={className} src={src} alt="" draggable={false} />;
+  return (
+    <Image className={className} src={src} alt={alt || ""} draggable={false} />
+  );
 };
