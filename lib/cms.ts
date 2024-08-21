@@ -35,7 +35,7 @@ async function fetchAPI(query: string, options?: FetchAPIOptions) {
   }
 
   const res = await fetch(API_URL, {
-    cache: "force-cache",
+    // cache: "force-cache",
     method: "POST",
     headers,
     body: JSON.stringify({
