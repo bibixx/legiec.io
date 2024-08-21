@@ -126,7 +126,7 @@ export interface ResponsiveImage {
 
 export interface CardAction {
   id: string;
-  icon: "Github" | "Youtube" | "File";
+  icon: "Github" | "Youtube" | "File" | "Craft";
   url?: string;
   asset?: {
     url: string;
