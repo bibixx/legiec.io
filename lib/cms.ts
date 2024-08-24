@@ -4,16 +4,10 @@ const USE_PREVIEW = process.env.DATOCMS_USE_PREVIEW === "true";
 
 const responsiveImageFragment = `
   fragment responsiveImageFragment on ResponsiveImage {
-  srcSet
-    webpSrcSet
-    sizes
-    src
-    width
-    height
-    aspectRatio
     alt
-    title
-    bgColor
+    src
+    height
+    width
     base64
   }
 `;
@@ -113,17 +107,11 @@ ${responsiveImageFragment}
 `;
 
 export interface ResponsiveImage {
-  srcSet: string;
-  webpSrcSet: string;
-  sizes: string;
   src: string;
-  width: number;
   height: number;
-  aspectRatio: number;
-  alt: string;
-  title: string;
-  bgColor: string;
-  base64: string;
+  width: number;
+  base64?: string;
+  alt?: string;
 }
 
 export interface CardAction {

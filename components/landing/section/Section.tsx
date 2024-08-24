@@ -20,7 +20,15 @@ export const Section = ({ section }: SectionProps) => {
   const items = section.cards.map((c): GridItem => {
     return {
       id: c.id,
-      img: { alt: c.image.responsiveImage.alt, src: c.image.responsiveImage },
+      img: {
+        alt: c.image.responsiveImage.alt,
+        src: {
+          src: c.image.responsiveImage.src,
+          height: c.image.responsiveImage.height,
+          width: c.image.responsiveImage.width,
+          blurDataURL: c.image.responsiveImage.base64,
+        },
+      },
       url: c.url,
       title: <CardTitle card={c} />,
       actions: c.actions != null && c.actions.length > 0 && (

@@ -80,6 +80,12 @@ const Img = ({ src, className, alt }: ImgProps) => {
   }
 
   return (
-    <Image className={className} src={src} alt={alt || ""} draggable={false} />
+    <Image
+      className={className}
+      src={src}
+      alt={alt || ""}
+      draggable={false}
+      placeholder="blur"
+    />
   );
 };
