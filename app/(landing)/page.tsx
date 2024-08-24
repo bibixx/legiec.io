@@ -67,4 +67,4 @@ const SectionWrapper = ({ className, ...props }: ComponentProps<"section">) => (
   <section className={cn("my-24 scroll-my-8", className)} {...props} />
 );
 
-export const dynamic = "force-static";
+export const dynamic = "error";

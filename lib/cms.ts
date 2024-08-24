@@ -23,6 +23,8 @@ interface FetchAPIOptions {
   preview?: boolean;
 }
 async function fetchAPI(query: string, options?: FetchAPIOptions) {
+  const url = new URL(API_URL);
+  url.searchParams.set("nonce", Date.now().toString());
   const preview = options?.preview ?? USE_PREVIEW;
   const variables = options?.variables;
 
@@ -34,8 +36,8 @@ async function fetchAPI(query: string, options?: FetchAPIOptions) {
     headers.append("X-Include-Drafts", "true");
   }
 
-  const res = await fetch(API_URL, {
-    // cache: "force-cache",
+  const res = await fetch(url, {
+    cache: "force-cache",
     method: "POST",
     headers,
     body: JSON.stringify({
