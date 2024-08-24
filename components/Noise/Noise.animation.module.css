@@ -1,0 +1,183 @@
+.noiseAnimation {
+  --framesCount: 11;
+  animation: animateGrain 2.1818181818s steps(1) infinite;
+  --noise-translate-x-1-default: 13;
+  --noise-translate-y-1-default: 4;
+  --noise-rotate-1-default: 1;
+  --noise-scale-y-1-default: 1;
+  --noise-scale-x-1-default: 1;
+  --noise-translate-x-2-default: 3;
+  --noise-translate-y-2-default: 17;
+  --noise-rotate-2-default: -3;
+  --noise-scale-y-2-default: 1;
+  --noise-scale-x-2-default: 1;
+  --noise-translate-x-3-default: -18;
+  --noise-translate-y-3-default: -12;
+  --noise-rotate-3-default: -6;
+  --noise-scale-y-3-default: 1;
+  --noise-scale-x-3-default: 1;
+  --noise-translate-x-4-default: 4;
+  --noise-translate-y-4-default: 15;
+  --noise-rotate-4-default: 8;
+  --noise-scale-y-4-default: 1;
+  --noise-scale-x-4-default: 1;
+  --noise-translate-x-5-default: -15;
+  --noise-translate-y-5-default: -12;
+  --noise-rotate-5-default: 6;
+  --noise-scale-y-5-default: 1;
+  --noise-scale-x-5-default: 1;
+  --noise-translate-x-6-default: 5;
+  --noise-translate-y-6-default: -5;
+  --noise-rotate-6-default: -7;
+  --noise-scale-y-6-default: 1;
+  --noise-scale-x-6-default: 1;
+  --noise-translate-x-7-default: -6;
+  --noise-translate-y-7-default: 15;
+  --noise-rotate-7-default: -9;
+  --noise-scale-y-7-default: 1;
+  --noise-scale-x-7-default: 1;
+  --noise-translate-x-8-default: 4;
+  --noise-translate-y-8-default: 14;
+  --noise-rotate-8-default: 8;
+  --noise-scale-y-8-default: 1;
+  --noise-scale-x-8-default: 1;
+  --noise-translate-x-9-default: -2;
+  --noise-translate-y-9-default: 10;
+  --noise-rotate-9-default: -5;
+  --noise-scale-y-9-default: 1;
+  --noise-scale-x-9-default: 1;
+  --noise-translate-x-10-default: 18;
+  --noise-translate-y-10-default: -16;
+  --noise-rotate-10-default: 1;
+  --noise-scale-y-10-default: 1;
+  --noise-scale-x-10-default: 1;
+  --noise-translate-x-11-default: -11;
+  --noise-translate-y-11-default: -11;
+  --noise-rotate-11-default: 3;
+  --noise-scale-y-11-default: 1;
+  --noise-scale-x-11-default: 1;
+}
+
+@keyframes animateGrain {
+  0% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-1, var(--noise-scale-x-1-default))),
+        calc(1 * var(--noise-scale-y-1, var(--noise-scale-y-1-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-1, var(--noise-translate-x-1-default))),
+        calc(1% * var(--noise-translate-y-1, var(--noise-translate-y-1-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-1, var(--noise-rotate-1-default))));
+  }
+  10% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-2, var(--noise-scale-x-2-default))),
+        calc(1 * var(--noise-scale-y-2, var(--noise-scale-y-2-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-2, var(--noise-translate-x-2-default))),
+        calc(1% * var(--noise-translate-y-2, var(--noise-translate-y-2-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-2, var(--noise-rotate-2-default))));
+  }
+  20% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-3, var(--noise-scale-x-3-default))),
+        calc(1 * var(--noise-scale-y-3, var(--noise-scale-y-3-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-3, var(--noise-translate-x-3-default))),
+        calc(1% * var(--noise-translate-y-3, var(--noise-translate-y-3-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-3, var(--noise-rotate-3-default))));
+  }
+  30% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-4, var(--noise-scale-x-4-default))),
+        calc(1 * var(--noise-scale-y-4, var(--noise-scale-y-4-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-4, var(--noise-translate-x-4-default))),
+        calc(1% * var(--noise-translate-y-4, var(--noise-translate-y-4-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-4, var(--noise-rotate-4-default))));
+  }
+  40% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-5, var(--noise-scale-x-5-default))),
+        calc(1 * var(--noise-scale-y-5, var(--noise-scale-y-5-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-5, var(--noise-translate-x-5-default))),
+        calc(1% * var(--noise-translate-y-5, var(--noise-translate-y-5-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-5, var(--noise-rotate-5-default))));
+  }
+  50% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-6, var(--noise-scale-x-6-default))),
+        calc(1 * var(--noise-scale-y-6, var(--noise-scale-y-6-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-6, var(--noise-translate-x-6-default))),
+        calc(1% * var(--noise-translate-y-6, var(--noise-translate-y-6-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-6, var(--noise-rotate-6-default))));
+  }
+  60% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-7, var(--noise-scale-x-7-default))),
+        calc(1 * var(--noise-scale-y-7, var(--noise-scale-y-7-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-7, var(--noise-translate-x-7-default))),
+        calc(1% * var(--noise-translate-y-7, var(--noise-translate-y-7-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-7, var(--noise-rotate-7-default))));
+  }
+  70% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-8, var(--noise-scale-x-8-default))),
+        calc(1 * var(--noise-scale-y-8, var(--noise-scale-y-8-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-8, var(--noise-translate-x-8-default))),
+        calc(1% * var(--noise-translate-y-8, var(--noise-translate-y-8-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-8, var(--noise-rotate-8-default))));
+  }
+  80% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-9, var(--noise-scale-x-9-default))),
+        calc(1 * var(--noise-scale-y-9, var(--noise-scale-y-9-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-9, var(--noise-translate-x-9-default))),
+        calc(1% * var(--noise-translate-y-9, var(--noise-translate-y-9-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-9, var(--noise-rotate-9-default))));
+  }
+  90% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-10, var(--noise-scale-x-10-default))),
+        calc(1 * var(--noise-scale-y-10, var(--noise-scale-y-10-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-10, var(--noise-translate-x-10-default))),
+        calc(1% * var(--noise-translate-y-10, var(--noise-translate-y-10-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-10, var(--noise-rotate-10-default))));
+  }
+  100% {
+    transform: scale(
+        calc(1 * var(--noise-scale-x-11, var(--noise-scale-x-11-default))),
+        calc(1 * var(--noise-scale-y-11, var(--noise-scale-y-11-default)))
+      )
+      translate(
+        calc(1% * var(--noise-translate-x-11, var(--noise-translate-x-11-default))),
+        calc(1% * var(--noise-translate-y-11, var(--noise-translate-y-11-default)))
+      )
+      rotate(calc(1deg * var(--noise-rotate-11, var(--noise-rotate-11-default))));
+  }
+}
