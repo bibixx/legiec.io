@@ -88,6 +88,7 @@ export const Noise = () => {
           <Image src={noiseSrc} fill alt="" priority />
         </div>
       </div>
+      <div className={styles.background} />
     </>
   );
 };
