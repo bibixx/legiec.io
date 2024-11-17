@@ -50,7 +50,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
               <a
                 href="https://www.imdb.com/title/tt0651001/"
                 target="_blank"
-                className="px-2 py-1 font-semibold link-text !text-foreground/30 max-2xl:!text-foreground-contrast/50 max-2xl:decoration-transparent hover:!text-link-hover hover:bg-background/75 hover:backdrop-blur-lg hover:decoration-current focus-visible:!text-link-hover focus-visible:bg-background/75 focus-visible:backdrop-blur-lg focus-visible:decoration-current rounded-md transition-all duration-200 group/source"
+                className="px-2 py-1 font-semibold underline underline-offset-2 select-auto text-foreground/30 max-2xl:text-foreground-contrast/50 max-2xl:decoration-transparent hover:text-link-hover hover:bg-background/75 hover:backdrop-blur-lg focus-visible:text-link-hover focus-visible:bg-background/75 focus-visible:backdrop-blur-lg rounded-md transition-colors duration-200 group/source"
               >
                 <span className="opacity-0 group-hover/source:opacity-100 group-focus-visible/source:opacity-100 transition-opacity duration-200">
                   Video source:{" "}

@@ -82,15 +82,38 @@
   * {
     @apply border-border;
   }
+
   html,
   body {
     @apply bg-background text-foreground;
   }
+
+  *:focus:not(:focus-visible) {
+    @apply outline-hidden;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-dashed outline-primary;
+  }
 }
 
 @layer utilities {
+  .outline-hidden {
+    outline-style: none;
+  }
+
   .link-text {
-    @apply text-primary underline underline-offset-2 hover:text-link-hover focus-visible:text-link-hover transition-colors duration-200 select-auto;
+    @apply text-primary outline-hidden outline-[none] outline-offset-0 underline underline-offset-2 select-auto;
+
+    @apply duration-100 before:duration-100 transition-colors before:transition-transform;
+
+    @apply relative z-0 before:content-[''] before:absolute before:block before:-z-10 before:rounded-sm before:scale-y-0 before:bg-primary before:origin-bottom;
+
+    @apply before:top-0 before:-inset-x-0.5 before:-bottom-0.5;
+
+    @apply hover:rounded-sm focus-visible:rounded-sm hover:text-primary-foreground hover:before:scale-y-100 focus-visible:text-primary-foreground focus-visible:before:scale-y-100;
+
+    outline-style: none;
   }
 
   .abs-center {

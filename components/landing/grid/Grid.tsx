@@ -27,7 +27,7 @@ interface BoxProps {
 }
 const Box = ({ item }: BoxProps) => {
   return (
-    <div className="group/box overflow-hidden rounded-sm relative flex flex-col justify-between transition-transform duration-200 hover:scale-[102%] has-[:focus-visible]:scale-[102%]">
+    <div className="group/box overflow-hidden rounded-sm relative flex flex-col justify-between transition-transform duration-200 hover:scale-[102%] has-[footer_a:focus-visible]:outline-dashed has-[footer_a:focus-visible]:outline-2 has-[footer_a:focus-visible]:outline-offset-2 has-[footer_a:focus-visible]:outline-primary">
       <a
         href={item.url}
         target="_blank"
@@ -47,7 +47,7 @@ const Box = ({ item }: BoxProps) => {
           <a
             href={item.url}
             target="_blank"
-            className="block p-2 backdrop-invert-[0.05] backdrop-blur-sm backdrop-brightness-[0.3] select-none outline-none"
+            className="block p-2 backdrop-invert-[0.05] backdrop-blur-sm backdrop-brightness-[0.3] select-none outline-hidden"
           >
             {item.title}
           </a>
