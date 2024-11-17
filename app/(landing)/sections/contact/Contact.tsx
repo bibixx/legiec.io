@@ -21,13 +21,13 @@ export const Contact = ({ className, contactMeans }: ContactProps) => {
           target="_blank"
           href={i.url}
           className={cn(
-            "text-foreground opacity-50 hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-75 no-underline min-h-0 aspect-square",
+            "text-foreground opacity-50 hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-200 no-underline min-h-0 aspect-square",
             className
           )}
         >
           <div
             aria-hidden
-            className="min-h-0 h-full flex items-center [&_svg]:h-full [&_svg]:w-full"
+            className="min-h-0 h-full flex items-center [&_svg]:h-full [&_svg]:w-full [&_svg]:fill-current"
             dangerouslySetInnerHTML={{ __html: i.iconString }}
           />
           <span className="sr-only">{i.alt}</span>
