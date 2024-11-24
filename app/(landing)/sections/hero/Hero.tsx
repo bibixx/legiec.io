@@ -61,7 +61,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
             <figcaption
               className={cn(
                 "absolute right-2 pointer-events-auto",
-                "max-md:bottom-2",
+                "max-md:bottom-2 max-md:left-2",
 
                 "md:max-2xl:top-4 md:max-2xl:right-4",
                 "2xl:translate-y-full",
@@ -76,16 +76,24 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
                 className={cn(
                   "px-2 py-1 font-semibold underline underline-offset-2 select-auto text-foreground/30 rounded-md transition-colors duration-200 group/source",
                   "max-2xl:text-foreground-contrast/50 max-2xl:decoration-transparent",
-                  "hover:text-link-hover hover:bg-background/75 hover:backdrop-blur-lg focus-visible:text-link-hover focus-visible:bg-background/75 focus-visible:backdrop-blur-lg"
+                  "hover:text-link-hover hover:bg-background/75 hover:backdrop-blur-lg focus-visible:text-link-hover focus-visible:bg-background/75 focus-visible:backdrop-blur-lg",
+                  "max-md:w-full max-md:block"
                 )}
               >
-                <span className="opacity-0 group-hover/source:opacity-100 group-focus-visible/source:opacity-100 transition-opacity duration-200">
+                <span
+                  className={cn(
+                    "opacity-0 transition-opacity duration-200",
+                    "group-hover/source:opacity-100 group-focus-visible/source:opacity-100"
+                  )}
+                >
                   Video source:{" "}
                 </span>
-                <span className="italic">
-                  Monty Python{APOSTROPHE}s Flying Circus
-                </span>{" "}
-                {BULLET} S2 E2
+                <span className="text-nowrap">
+                  <span className="italic">
+                    Monty Python{APOSTROPHE}s Flying Circus
+                  </span>{" "}
+                  {BULLET} S2 E2
+                </span>
               </a>
             </figcaption>
           </figure>
