@@ -27,7 +27,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
           )}
           ref={stickyRef}
         >
-          <div className="inline-grid px-4 -mx-4 pt-8 pb-3 -my-2 sm:px-8 sm:-mx-8 sm:pt-4 sm:pb-7 sm:-my-4 dark:bg-background/75 bg-background/65 backdrop-blur-lg rounded-md motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none slide-in-from-bottom-1/4 fade-in pointer-events-auto">
+          <div className="inline-grid px-4 -mx-4 pt-4 pb-3 -my-2 sm:px-8 sm:-mx-8 sm:pb-7 sm:-my-4 dark:bg-background/75 bg-background/65 backdrop-blur-lg rounded-md motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none slide-in-from-bottom-1/4 fade-in pointer-events-auto">
             <h1 className="inline-block font-display font-bold text-6xl sm:text-9xl mb-4 [word-spacing:0.15em]">
               {hero.heading}
             </h1>

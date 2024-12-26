@@ -12,6 +12,7 @@
   overflow: hidden;
   pointer-events: none;
   z-index: 99999999;
+  user-select: none;
 }
 
 .background {
