@@ -1,4 +1,4 @@
-import tisButAScratchSrc from "@/assets/tis-but-a-scratch.avif";
+import tisButAScratchSrc from "@/assets/tis-but-a-scratch.png";
 import LandingLayout from "./(landing)/layout";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
