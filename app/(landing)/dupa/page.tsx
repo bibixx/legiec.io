@@ -1,6 +1,25 @@
 import dupaSrc from "@/assets/dupa.png";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  openGraph: {
+    type: "profile",
+    username: "bibixx",
+    firstName: "Bartek",
+    lastName: "Legięć",
+    gender: "male",
+    images: [
+      {
+        url: "/og-dupa.png",
+        width: 1200,
+        height: 630,
+        alt: `On the left side there is a big white text saying "Bartek Legięć". On the right, there's Mike Tyson, before his fight with Jake Paul, stands in a locker room with his back to the camera, wearing boxing gloves and a belt. His bare backside is visible. Several people are around him, and there are lockers in the background. The image has a purple tint.`,
+      },
+    ],
+  },
+};
 
 export default function Dupa() {
   return (
