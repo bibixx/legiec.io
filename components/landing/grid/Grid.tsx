@@ -7,6 +7,7 @@ export interface GridItem {
   img: { alt?: string; src: StaticImageData | string };
   title: ReactNode;
   actions?: ReactNode;
+  background?: string;
 }
 
 interface GridProps {
@@ -27,22 +28,28 @@ interface BoxProps {
 }
 const Box = ({ item }: BoxProps) => {
   return (
-    <div className="group/box overflow-hidden rounded-sm relative flex flex-col justify-between transition-transform duration-200 hover:scale-[102%] has-[footer_a:focus-visible]:outline-dashed has-[footer_a:focus-visible]:outline-2 has-[footer_a:focus-visible]:outline-offset-2 has-[footer_a:focus-visible]:outline-primary">
+    <div
+      className="group/box overflow-hidden rounded-sm relative flex flex-col justify-between transition-transform duration-200 hover:scale-[102%] has-[footer_a:focus-visible]:outline-dashed has-[footer_a:focus-visible]:outline-2 has-[footer_a:focus-visible]:outline-offset-2 has-[footer_a:focus-visible]:outline-primary"
+      style={{ backgroundColor: item.background }}
+    >
+      {item.background == null && (
+        <Img
+          className="aspect-video absolute top-0 left-0 w-full h-full"
+          src={item.img.src}
+          alt=""
+        />
+      )}
+
       <a
         href={item.url}
         target="_blank"
         tabIndex={-1}
         className="block aspect-video w-full"
       >
-        <Img
-          className="aspect-video absolute top-0 left-0 w-full h-full object-fill"
-          src={item.img.src}
-          alt=""
-        />
         <Img className="aspect-video relative" src={item.img.src} alt="" />
       </a>
 
-      <footer className="text-foreground-contrast w-full font-semibold text-center z-10 relative -mt-4">
+      <footer className="text-foreground-contrast w-full font-semibold text-center z-10 relative">
         <div className="relative z-10">
           <a
             href={item.url}

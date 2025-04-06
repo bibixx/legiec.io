@@ -1,3 +1,5 @@
+import { log } from "console";
+
 const API_URL = "https://graphql.datocms.com";
 const API_TOKEN = process.env.DATOCMS_API_TOKEN;
 const USE_PREVIEW = process.env.DATOCMS_USE_PREVIEW === "true";
@@ -81,6 +83,9 @@ const SECTIONS_QUERY = `
         }
       }
       url
+      background {
+        hex
+      }
       actions {
 				asset {
           url
@@ -149,6 +154,9 @@ export interface Card {
     responsiveImage: ResponsiveImage;
   };
   actions?: CardAction[];
+  background?: {
+    hex: string;
+  };
 }
 
 export interface Section {

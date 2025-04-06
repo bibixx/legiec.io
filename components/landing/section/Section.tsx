@@ -30,6 +30,7 @@ export const Section = ({ section }: SectionProps) => {
         },
       },
       url: c.url,
+      background: c.background?.hex,
       title: <CardTitle card={c} />,
       actions: c.actions != null && c.actions.length > 0 && (
         <div className="mb-2 px-2 w-full flex justify-end gap-2">
