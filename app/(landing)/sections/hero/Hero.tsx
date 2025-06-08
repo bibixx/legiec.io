@@ -39,7 +39,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
           </div>
         </div>
 
-        <div className="h-[100vh] w-full relative pointer-events-none">
+        <div className="h-screen w-full relative pointer-events-none">
           <div className="inline-flex gap-3 sticky top-2 left-0 m-2 p-2 z-10 rounded-md items-center backdrop-blur-lg backdrop-brightness-75 pointer-events-auto motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-500 fade-in">
             <Contact
               contactMeans={contactMeans}
@@ -66,7 +66,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
                 "md:max-2xl:top-4 md:max-2xl:right-4",
                 "2xl:translate-y-full",
 
-                "max-md:opacity-0 transition-opacity duration-200 max-md:has-[:focus-visible]:opacity-100",
+                "max-md:opacity-0 transition-opacity duration-200 max-md:has-focus-visible:opacity-100",
                 { "max-md:opacity-100": isSticky }
               )}
             >

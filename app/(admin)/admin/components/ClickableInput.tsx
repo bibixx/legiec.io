@@ -8,7 +8,7 @@ export const ClickableInput = forwardRef<HTMLInputElement, InputProps>(
       ref={ref}
       {...props}
       className={cn(className, {
-        "[&:not(:focus)]:cursor-pointer [&:not(:focus):not(:hover)]:border-transparent [&:not(:focus):not(:hover)]:shadow-none":
+        "not-focus:cursor-pointer [&:not(:focus):not(:hover)]:border-transparent [&:not(:focus):not(:hover)]:shadow-none":
           props.value !== "",
       })}
     />

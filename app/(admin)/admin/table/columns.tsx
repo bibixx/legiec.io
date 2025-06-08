@@ -269,7 +269,7 @@ export const columns: ColumnDef<LinkData, any>[] = [
             disabled={isLoading}
             size="sm"
             type="submit"
-            className={cn({ "!cursor-wait": isLoading })}
+            className={cn({ "cursor-wait!": isLoading })}
           >
             Add
             {isLoading ? (

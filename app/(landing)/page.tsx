@@ -30,7 +30,7 @@ export default async function Home() {
         <a
           href="/easter-egg"
           target="_blank"
-          className="link-text !text-foreground/50 hover:!text-primary-foreground focus-visible:!text-primary-foreground w-4 h-5 flex items-center justify-center mx-auto !no-underline before:bottom-px before:-top-px"
+          className="link-text text-foreground/50! hover:text-primary-foreground! focus-visible:text-primary-foreground! w-4 h-5 flex items-center justify-center mx-auto no-underline! before:bottom-px before:-top-px"
         >
           {STAR}
         </a>

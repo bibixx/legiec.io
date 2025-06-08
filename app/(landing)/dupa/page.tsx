@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function Dupa() {
   return (
-    <div className="w-full h-[100dvh]">
+    <div className="w-full h-dvh">
       <figure className="absolute top-0 left-0 h-full w-full">
         <Image
           src={dupaSrc}

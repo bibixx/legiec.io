@@ -1,0 +1,90 @@
+@reference "../../../styles/globals.css";
+
+@utility grid-duration {
+  @apply duration-200;
+  @apply motion-reduce:transition-none;
+}
+
+@utility grid-rounded {
+  @apply rounded-xl;
+}
+
+@utility grid-border-size {
+  @apply border;
+}
+
+@utility grid-border-color {
+  @apply border-foreground/10;
+}
+
+.boxWrapper {
+  @apply relative;
+  @apply flex flex-col justify-between;
+  @apply grid-rounded overflow-hidden;
+  @apply transition-transform grid-duration;
+}
+
+.boxWrapper:has(a:focus-visible) {
+  @apply outline-dashed outline-2 outline-offset-2 outline-primary;
+}
+
+.imageBackground {
+  @apply aspect-video absolute top-0 left-0 w-full h-full;
+  @apply opacity-0;
+  @apply transition-opacity grid-duration;
+  @apply invert-0 brightness-[0.7] saturate-200 blur-md;
+}
+
+:global(.dark) .imageBackground {
+  @apply invert-[0.05] brightness-[0.3] blur-sm saturate-[1];
+}
+
+:global(.dark) .boxWrapper:hover .imageBackground,
+:global(.dark) .boxWrapper:has(a:focus-visible) .imageBackground {
+  @apply opacity-100;
+}
+
+.boxWrapper:hover .imageBackground,
+.boxWrapper:has(a:focus-visible) .imageBackground {
+  @apply opacity-25;
+}
+
+.blockImage {
+  @apply aspect-video w-full h-full absolute top-0 left-0;
+  @apply object-cover;
+  @apply transition-[height,top,border-radius,border-color] transition-discrete grid-duration;
+  @apply grid-rounded overflow-hidden;
+  @apply grid-border-size grid-border-color;
+
+  @apply motion-reduce:h-[calc(100%+0.5rem)];
+}
+
+.boxWrapper:hover .blockImage,
+.boxWrapper:has(a:focus-visible) .blockImage {
+  @apply rounded-b-none;
+  @apply h-[calc(100%+0.5rem)];
+}
+
+.footer {
+  @apply text-foreground;
+  @apply font-semibold text-center;
+  @apply w-full z-10 relative grid-rounded;
+  @apply transition-[border-radius,background-color,border-color] grid-duration;
+  @apply grid-border-size border-t-0 border-foreground/0;
+}
+
+.boxWrapper:hover .footer,
+.boxWrapper:has(a:focus-visible) .footer {
+  @apply rounded-t-none grid-border-color;
+}
+
+.actions {
+  @apply absolute z-10 top-0 right-0 -translate-y-full;
+  @apply transition-opacity grid-duration;
+  @apply opacity-0;
+}
+
+.boxWrapper:hover .actions,
+.boxWrapper:has(a:focus-visible) .actions {
+  @apply opacity-100;
+}

@@ -1,3 +1,5 @@
+@reference "../../styles/globals.css";
+
 .noise {
   position: fixed;
   display: flex;

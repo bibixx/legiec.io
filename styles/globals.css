@@ -1,81 +1,227 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
 
-@layer base {
-  :root {
-    --background: 246 100% 98%;
-    --foreground: 224 71.4% 4.1%;
-    --foreground-contrast: 246 40% 98%;
+@custom-variant dark (&:is(.dark *));
 
-    --muted: 246 14.3% 95.9%;
-    --muted-foreground: 246 8.9% 46.1%;
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
+  --color-foreground: hsl(var(--foreground));
+  --color-foreground-contrast: hsl(var(--foreground-contrast));
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
 
-    --border: 246 13% 91%;
-    --input: 246 13% 91%;
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
 
-    --primary: 258 100% 60.1%;
-    --primary-foreground: 246 100% 98%;
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
 
-    --secondary: 246 14.3% 95.9%;
-    --secondary-foreground: 246.9 39.3% 11%;
+  --color-create: hsl(var(--create));
+  --color-create-foreground: hsl(var(--create-foreground));
 
-    --accent: 246 14.3% 93%;
-    --accent-foreground: 246.9 39.3% 11%;
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
 
-    --ring: 217.9 10.6% 64.9%;
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
 
-    --create: 142.43 71.81% 29.22%;
-    --create-foreground: 142.43 40% 98%;
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
 
-    --link-hover: 258 100% 40.1%;
+  --color-link-hover: hsl(var(--link-hover));
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-clash-display);
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
   }
 }
 
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility outline-hidden {
+  outline-style: none;
+}
+
+@utility link-text {
+  @apply text-primary outline-hidden outline-[none] outline-offset-0 underline underline-offset-2 select-auto;
+
+  @apply duration-100 before:duration-100 transition-colors before:transition-transform;
+
+  @apply relative z-0 before:content-[''] before:absolute before:block before:-z-10 before:rounded-xs before:scale-y-0 before:bg-primary before:origin-bottom;
+
+  @apply before:top-0 before:-inset-x-0.5 before:-bottom-0.5;
+
+  @apply hover:rounded-xs focus-visible:rounded-xs hover:text-primary-foreground hover:before:scale-y-100 focus-visible:text-primary-foreground focus-visible:before:scale-y-100;
+
+  outline-style: none;
+
+  @apply motion-reduce:transition-none motion-reduce:before:transition-none;
+}
+
+@utility abs-center {
+  @apply absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2;
+}
+
+@utility link-text-wrapper {
+  & a {
+    @apply link-text;
+  }
+}
+
+:root {
+  --background: hsl(246 100% 98%);
+  --foreground: hsl(224 71.4% 4.1%);
+  --foreground-contrast: hsl(246 40% 98%);
+
+  --muted: hsl(246 14.3% 95.9%);
+  --muted-foreground: hsl(246 8.9% 46.1%);
+
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(224 71.4% 4.1%);
+
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222.2 84% 4.9%);
+
+  --border: hsl(246 13% 91%);
+  --input: hsl(246 13% 91%);
+
+  --primary: hsl(258 100% 60.1%);
+  --primary-foreground: hsl(246 100% 98%);
+
+  --secondary: hsl(246 14.3% 95.9%);
+  --secondary-foreground: hsl(246.9 39.3% 11%);
+
+  --accent: hsl(246 14.3% 93%);
+  --accent-foreground: hsl(246.9 39.3% 11%);
+
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(210 20% 98%);
+
+  --ring: hsl(217.9 10.6% 64.9%);
+
+  --create: hsl(142.43 71.81% 29.22%);
+  --create-foreground: hsl(142.43 40% 98%);
+
+  --link-hover: hsl(258 100% 40.1%);
+}
+
 .dark {
-  --background: 246 20% 7%;
-  --foreground: 246 40% 98%;
-  --foreground-contrast: 246 40% 98%;
+  --background: hsl(246 20% 7%);
+  --foreground: hsl(246 40% 98%);
+  --foreground-contrast: hsl(246 40% 98%);
 
-  --muted: 246 27.9% 16.9%;
-  --muted-foreground: 246 10.6% 64.9%;
+  --muted: hsl(246 27.9% 16.9%);
+  --muted-foreground: hsl(246 10.6% 64.9%);
 
-  --popover: 224 71.4% 4.1%;
-  --popover-foreground: 210 20% 98%;
+  --popover: hsl(224 71.4% 4.1%);
+  --popover-foreground: hsl(210 20% 98%);
 
-  --card: 246 40% 4.9%;
-  --card-foreground: 210 40% 98%;
+  --card: hsl(246 40% 4.9%);
+  --card-foreground: hsl(210 40% 98%);
 
-  --border: 246 20% 16.9%;
-  --input: 246 20% 16.9%;
+  --border: hsl(246 20% 16.9%);
+  --input: hsl(246 20% 16.9%);
 
-  --primary: 246 100% 70.1%;
-  --primary-foreground: 220.9 39.3% 11%;
+  --primary: hsl(246 100% 70.1%);
+  --primary-foreground: hsl(220.9 39.3% 11%);
 
-  --secondary: 246 27.9% 16.9%;
-  --secondary-foreground: 210 20% 98%;
+  --secondary: hsl(246 27.9% 16.9%);
+  --secondary-foreground: hsl(210 20% 98%);
 
-  --accent: 246 30% 20%;
-  --accent-foreground: 210 20% 98%;
+  --accent: hsl(246 30% 20%);
+  --accent-foreground: hsl(210 20% 98%);
 
-  --destructive: 0deg 84.24% 60.2%;
-  --destructive-foreground: 0 85.7% 97.3%;
+  --destructive: hsl(0deg 84.24% 60.2%);
+  --destructive-foreground: hsl(0 85.7% 97.3%);
 
-  --create: 142.43 71.81% 29.22%;
-  --create-foreground: 142.43 40% 98%;
+  --create: hsl(142.43 71.81% 29.22%);
+  --create-foreground: hsl(142.43 40% 98%);
 
-  --ring: 215 27.9% 16.9%;
+  --ring: hsl(215 27.9% 16.9%);
 
-  --link-hover: 246 100% 80.1%;
+  --link-hover: hsl(246 100% 80.1%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-contrast: var(--foreground-contrast);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-ring: var(--ring);
+  --color-create: var(--create);
+  --color-create-foreground: var(--create-foreground);
+  --color-link-hover: var(--link-hover);
 }
 
 @layer base {
@@ -94,33 +240,5 @@
 
   *:focus-visible {
     @apply outline-2 outline-dashed outline-primary;
-  }
-}
-
-@layer utilities {
-  .outline-hidden {
-    outline-style: none;
-  }
-
-  .link-text {
-    @apply text-primary outline-hidden outline-[none] outline-offset-0 underline underline-offset-2 select-auto;
-
-    @apply duration-100 before:duration-100 transition-colors before:transition-transform;
-
-    @apply relative z-0 before:content-[''] before:absolute before:block before:-z-10 before:rounded-sm before:scale-y-0 before:bg-primary before:origin-bottom;
-
-    @apply before:top-0 before:-inset-x-0.5 before:-bottom-0.5;
-
-    @apply hover:rounded-sm focus-visible:rounded-sm hover:text-primary-foreground hover:before:scale-y-100 focus-visible:text-primary-foreground focus-visible:before:scale-y-100;
-
-    outline-style: none;
-  }
-
-  .abs-center {
-    @apply absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2;
-  }
-
-  .link-text-wrapper a {
-    @apply link-text;
   }
 }

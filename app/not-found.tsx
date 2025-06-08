@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <LandingLayout>
-      <div className="w-full h-[100dvh]">
+      <div className="w-full h-dvh">
         <figure className="absolute top-0 left-0 h-full w-full">
           <Image
             src={tisButAScratchSrc}

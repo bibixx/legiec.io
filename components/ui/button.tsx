@@ -5,21 +5,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors outline-hidden focus-visible:outline-offset-0 focus-visible:outline disabled:opacity-50 disabled:cursor-not-allowed select-none",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed select-none outline-primary focus-visible:outline-offset-0 focus-visible:outline-solid",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+          "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90",
         black:
-          "bg-slate-900 text-primary-foreground shadow hover:bg-slate-900/90",
+          "bg-slate-900 text-primary-foreground shadow-sm hover:bg-slate-900/90",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        create: "bg-create text-create-foreground shadow-sm hover:bg-create/90",
+          "bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90",
+        create: "bg-create text-create-foreground shadow-xs hover:bg-create/90",
         outline:
-          "border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-transparent shadow-xs hover:bg-accent hover:text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         destructiveGhost:
           "border border-transparent hover:border-destructive text-destructive hover:bg-destructive/15",

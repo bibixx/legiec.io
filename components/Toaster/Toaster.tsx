@@ -64,13 +64,13 @@ export const Toaster = () => {
                     classNames={{
                       enter: cn("-translate-y-full"),
                       enterActive: cn(
-                        "transition-all !translate-y-[--offset-y]"
+                        "transition-all translate-y-(--offset-y)!"
                       ),
-                      enterDone: cn("transition-all translate-y-[--offset-y]"),
+                      enterDone: cn("transition-all translate-y-(--offset-y)"),
 
-                      exit: cn("translate-y-[--offset-y] opacity-100"),
+                      exit: cn("translate-y-(--offset-y) opacity-100"),
                       exitActive: cn(
-                        "transition-all translate-x-[calc(-50%+2rem)] !opacity-0"
+                        "transition-all translate-x-[calc(-50%+2rem)] opacity-0!"
                       ),
                     }}
                   >
@@ -91,7 +91,7 @@ export const Toaster = () => {
                           ...style,
                         })}
                         className={cn(
-                          "fixed top-0 left-1/2 z-[100] max-w-[420px]",
+                          "fixed top-0 left-1/2 z-100 max-w-[420px]",
                           `-translate-x-1/2`,
                           className
                         )}

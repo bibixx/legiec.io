@@ -64,9 +64,7 @@ const CardTitle = ({ card: c }: CardTitleProps) => {
     return (
       <>
         <div>{c.title}</div>
-        <div className="text-sm text-foreground-contrast/70">
-          {titleBlock.subtitle}
-        </div>
+        <div className="text-sm opacity-70">{titleBlock.subtitle}</div>
       </>
     );
   }
@@ -92,7 +90,7 @@ const CardTitle = ({ card: c }: CardTitleProps) => {
     );
 
     const subtitle = titleBlock.date && (
-      <div className="text-sm text-foreground-contrast/70">
+      <div className="text-sm opacity-70">
         <span className="sr-only">Date: </span>
         {formatDate(new Date(titleBlock.date))}
       </div>
@@ -193,7 +191,7 @@ const Action = ({ action }: ActionProps) => {
           rel="noopener"
           className="pointer-events-auto"
         >
-          <Icon className="h-[1.125rem] w-[1.125rem]" />
+          <Icon className="h-4.5 w-4.5" />
         </a>
       </Button>
     </Tooltip>
