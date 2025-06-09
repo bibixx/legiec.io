@@ -1,15 +1,12 @@
+import { GithubIcon } from "@/components/icons/GithubIcon";
+import { YoutubeIcon } from "@/components/icons/YoutubeIcon";
 import { Grid, GridItem } from "@/components/landing/grid/Grid";
 import { Button } from "@/components/ui/button";
 import { Tooltip } from "@/components/ui/tooltip";
 import { assertNever } from "@/lib/assertNever";
 import { CardAction, Section as CMSSection, Card as CMSCard } from "@/lib/cms";
 import { cn } from "@/lib/utils";
-import {
-  FileTextIcon,
-  GithubIcon,
-  LucideIcon,
-  YoutubeIcon,
-} from "lucide-react";
+import { BookIcon, FileTextIcon, LucideIcon } from "lucide-react";
 import { ComponentProps, forwardRef, useMemo } from "react";
 
 interface SectionProps {
@@ -149,14 +146,17 @@ const ACTION_TO_ICON: Record<CardAction["icon"], LucideIcon> = {
   Youtube: YoutubeIcon,
   File: FileTextIcon,
   Craft: CraftIcon,
+  Book: BookIcon,
 };
 
-const ICON_TO_DEFAULT_TOOLTIP: Record<CardAction["icon"], string> = {
-  Github: "See on GitHub",
-  Youtube: "See on YouTube",
-  File: "Download",
-  Craft: "Read as Article",
-};
+const ICON_TO_DEFAULT_TOOLTIP: Record<CardAction["icon"], string | undefined> =
+  {
+    Github: "See on GitHub",
+    Youtube: "See on YouTube",
+    File: "Download",
+    Craft: "Read as Article",
+    Book: undefined,
+  };
 
 interface ActionProps {
   action: CardAction;

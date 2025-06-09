@@ -1,5 +1,3 @@
-import { log } from "console";
-
 const API_URL = "https://graphql.datocms.com";
 const API_TOKEN = process.env.DATOCMS_API_TOKEN;
 const USE_PREVIEW = process.env.DATOCMS_USE_PREVIEW === "true";
@@ -121,7 +119,7 @@ export interface ResponsiveImage {
 
 export interface CardAction {
   id: string;
-  icon: "Github" | "Youtube" | "File" | "Craft";
+  icon: "Github" | "Youtube" | "File" | "Craft" | "Book";
   url?: string;
   asset?: {
     url: string;

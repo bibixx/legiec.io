@@ -80,6 +80,10 @@ const Tooltip = (props: TooltipProps) => {
     hideWhenDetached: props.hideWhenDetached,
   };
 
+  if (!props.content) {
+    return <>{props.children}</>;
+  }
+
   return (
     <TooltipRoot {...rootProps}>
       <TooltipPortal>
