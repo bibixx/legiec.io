@@ -39,14 +39,32 @@
   @apply invert-[0.05] brightness-[0.3] blur-sm saturate-[1];
 }
 
+@utility imageBackgroundDarkHover {
+  @apply opacity-100;
+}
+
 :global(.dark) .boxWrapper:hover .imageBackground,
 :global(.dark) .boxWrapper:has(a:focus-visible) .imageBackground {
-  @apply opacity-100;
+  @apply imageBackgroundDarkHover;
+}
+
+@utility imageBackgroundHover {
+  @apply opacity-25;
 }
 
 .boxWrapper:hover .imageBackground,
 .boxWrapper:has(a:focus-visible) .imageBackground {
-  @apply opacity-25;
+  @apply imageBackgroundHover;
+}
+
+@media (pointer: coarse) {
+  :global(.dark) .imageBackground {
+    @apply imageBackgroundDarkHover;
+  }
+
+  .imageBackground {
+    @apply imageBackgroundHover;
+  }
 }
 
 .blockImage {
@@ -59,10 +77,20 @@
   @apply motion-reduce:h-[calc(100%+0.5rem)];
 }
 
-.boxWrapper:hover .blockImage,
-.boxWrapper:has(a:focus-visible) .blockImage {
+@utility blockImageHover {
   @apply rounded-b-none;
   @apply h-[calc(100%+0.5rem)];
+}
+
+.boxWrapper:hover .blockImage,
+.boxWrapper:has(a:focus-visible) .blockImage {
+  @apply blockImageHover;
+}
+
+@media (pointer: coarse) {
+  .blockImage {
+    @apply blockImageHover;
+  }
 }
 
 .footer {
@@ -73,9 +101,19 @@
   @apply grid-border-size border-t-0 border-foreground/0;
 }
 
+@utility footerHover {
+  @apply rounded-t-none grid-border-color;
+}
+
 .boxWrapper:hover .footer,
 .boxWrapper:has(a:focus-visible) .footer {
-  @apply rounded-t-none grid-border-color;
+  @apply footerHover;
+}
+
+@media (pointer: coarse) {
+  .footer {
+    @apply footerHover;
+  }
 }
 
 .actions {
@@ -84,7 +122,17 @@
   @apply opacity-0;
 }
 
+@utility actionsHover {
+  @apply opacity-100;
+}
+
 .boxWrapper:hover .actions,
 .boxWrapper:has(a:focus-visible) .actions {
-  @apply opacity-100;
+  @apply actionsHover;
+}
+
+@media (pointer: coarse) {
+  .actions {
+    @apply actionsHover;
+  }
 }
