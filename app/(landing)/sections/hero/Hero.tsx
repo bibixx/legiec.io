@@ -5,6 +5,31 @@ import { cn } from "@/lib/utils";
 import { Contact } from "../contact/Contact";
 import { ContactMeans, Hero as CMSHero } from "@/lib/cms";
 import { useShowCitation } from "./Hero.hooks";
+import { useLayoutEffect, useRef } from "react";
+
+const isSafari26 = (() => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  const isIOS = /iP(ad|od|hone)/i.test(window.navigator.userAgent);
+  const safariVersionMatch = navigator.userAgent.match(
+    /Version\/([\d\.]+).*Safari/
+  );
+
+  if (!isIOS || safariVersionMatch == null) {
+    return false;
+  }
+
+  const [major] = safariVersionMatch[1]?.split(".");
+  const majorNumber = Number(major);
+
+  if (Number.isNaN(majorNumber)) {
+    return false;
+  }
+
+  return majorNumber >= 26;
+})();
 
 interface HeroProps {
   contactMeans: ContactMeans[];
@@ -12,6 +37,21 @@ interface HeroProps {
 }
 export const Hero = ({ contactMeans, hero }: HeroProps) => {
   const [isSticky, stickyRef, detectorRef] = useShowCitation();
+  const animatedRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (animatedRef.current == null) {
+      return;
+    }
+
+    animatedRef.current.classList.remove("hidden");
+    animatedRef.current.classList.add("inline-grid");
+    if (isSafari26) {
+      animatedRef.current.classList.add("slide-in-from-bottom-[16px]");
+    } else {
+      animatedRef.current.classList.add("slide-in-from-bottom-1/4");
+    }
+  }, []);
 
   return (
     <>
@@ -27,7 +67,19 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
           )}
           ref={stickyRef}
         >
-          <div className="inline-grid px-4 -mx-4 pt-4 pb-3 -my-2 sm:px-8 sm:-mx-8 sm:pb-7 sm:-my-4 dark:bg-background/75 bg-background/65 backdrop-blur-lg rounded-md motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none slide-in-from-bottom-1/4 fade-in pointer-events-auto">
+          <div
+            suppressHydrationWarning
+            className={cn(
+              "hidden",
+              "noscript:inline-grid",
+              "noscript:slide-in-from-bottom-1/4",
+              "px-4 -mx-4 pt-4 pb-3 -my-2 sm:px-8 sm:-mx-8 sm:pb-7 sm:-my-4",
+              "rounded-md pointer-events-auto",
+              "dark:bg-background/75 bg-background/65 backdrop-blur-lg",
+              "motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none fade-in"
+            )}
+            ref={animatedRef}
+          >
             <h1 className="inline-block font-display font-bold text-6xl sm:text-9xl mb-4 [word-spacing:0.15em]">
               {hero.heading}
             </h1>
