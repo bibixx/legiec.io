@@ -118,9 +118,59 @@
   @apply absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2;
 }
 
+@utility star-divider {
+  @apply text-[0.66em] align-[0.125em] tracking-[0.2em];
+
+  &:before {
+    content: "." / "";
+    font-size: 0.01px;
+    clip: rect(0, 0, 0, 0);
+    color: transparent;
+  }
+}
+
 @utility link-text-wrapper {
   & a {
-    @apply link-text;
+    @apply link-text text-nowrap;
+  }
+
+  & a:has(.logo) {
+    @apply pl-0.5 pr-1 -mr-1;
+  }
+
+  & .divider {
+    @apply star-divider;
+  }
+
+  & .divider {
+    @apply max-lg:block max-lg:w-0 max-lg:h-0 max-lg:overflow-hidden;
+  }
+
+  & .logo {
+    @apply inline-block overflow-hidden mr-1.5 rounded-sm align-[-0.18em] pointer-events-none relative;
+
+    @apply text-foreground/10 dark:text-foreground/20;
+  }
+
+  & .logo::after {
+    @apply inset-shadow-[0_0_0_1px];
+    content: "";
+    position: absolute;
+    inset: 0;
+    display: block;
+    border-radius: inherit;
+  }
+
+  & .logo img {
+    @apply size-5 object-cover;
+  }
+}
+
+@utility container {
+  @apply px-8;
+
+  @media (width >= 40rem) {
+    @apply px-16;
   }
 }
 

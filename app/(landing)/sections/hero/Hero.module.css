@@ -1,0 +1,84 @@
+.heroWrapper {
+  --cr: 150px; /* circle radius = circle diameter / 2  (fixed) */
+  --th: 100px; /* tab rise: how far the body top sits below the element top (fixed) */
+  --r: 24px; /* body corner radius (fixed) */
+
+  margin-top: calc(var(--cr) * -2 + (var(--cr) * 2 - var(--th)));
+  border-radius: var(--r);
+
+  --mask:
+    /* the circle — always a full circle, tangent to top-left */
+    radial-gradient(circle var(--cr) at center, #000 calc(100% - 0.1px), #0000)
+      0 0/calc(var(--cr) * 2) calc(var(--cr) * 2) no-repeat,
+    /* body: below the circle, inset to the circle centre so its left half bumps out */
+    linear-gradient(#000, #000) var(--cr) var(--cr)/calc(100% - var(--cr))
+      calc(100% - var(--cr)) no-repeat,
+    /* body: top band, right of the square */ linear-gradient(#000, #000)
+      var(--cr) var(--th)/calc(100% - var(--cr) - var(--r))
+      calc(var(--cr) - var(--th)) no-repeat,
+    /* body: fill out to the right edge under the rounded corner */
+    linear-gradient(#000, #000) var(--cr)
+      calc(var(--th) + var(--r))/calc(100% - var(--cr))
+      calc(var(--cr) - var(--th) - var(--r)) no-repeat,
+    /* body: rounded top-right corner */
+    radial-gradient(circle var(--r) at center, #000 calc(100% - 0.1px), #0000)
+      right var(--th)/calc(var(--r) * 2) calc(var(--r) * 2) no-repeat;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+
+  height: calc(var(--cr) * 2);
+  pointer-events: none;
+  padding-right: 2rem;
+}
+
+.heroWrapper > * {
+  pointer-events: auto;
+}
+
+.contentWrapper {
+  padding-top: var(--th);
+  height: calc(var(--cr) * 2 - var(--th));
+  box-sizing: content-box;
+}
+
+.contentWrapper a {
+  user-select: none;
+}
+
+.avatarWrapper {
+  width: calc(var(--cr) * 2);
+  flex: 0 0 calc(var(--cr) * 2);
+}
+
+@media (width < 80rem) {
+  .heroWrapper {
+    --th: 0;
+    --r: 12px; /* body corner radius (fixed) */
+
+    mask: none;
+    height: auto;
+    width: auto;
+  }
+
+  .contentWrapper {
+    padding-top: 0;
+  }
+
+  .avatarWrapper {
+    display: none;
+  }
+}
+
+@media (width < 40rem) {
+  .heroWrapper {
+    width: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+/* sm	@media (width >= 40rem)
+md	@media (width >= 48rem)
+lg	@media (width >= 64rem)
+xl	@media (width >= 80rem)
+2xl	@media (width >= 96rem) */

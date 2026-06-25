@@ -1,11 +1,12 @@
 "use client";
 
-import { APOSTROPHE, BULLET } from "@/lib/text";
+import { APOSTROPHE, STAR } from "@/lib/text";
 import { cn } from "@/lib/utils";
 import { Contact } from "../contact/Contact";
 import { ContactMeans, Hero as CMSHero } from "@/lib/cms";
-import { useShowCitation } from "./Hero.hooks";
 import { useLayoutEffect, useRef } from "react";
+import styles from "./Hero.module.css";
+import Image from "next/image";
 
 const isSafari26 = (() => {
   if (typeof window === "undefined") {
@@ -14,7 +15,7 @@ const isSafari26 = (() => {
 
   const isIOS = /iP(ad|od|hone)/i.test(window.navigator.userAgent);
   const safariVersionMatch = navigator.userAgent.match(
-    /Version\/([\d\.]+).*Safari/
+    /Version\/([\d\.]+).*Safari/,
   );
 
   if (!isIOS || safariVersionMatch == null) {
@@ -36,7 +37,6 @@ interface HeroProps {
   hero: CMSHero;
 }
 export const Hero = ({ contactMeans, hero }: HeroProps) => {
-  const [isSticky, stickyRef, detectorRef] = useShowCitation();
   const animatedRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -45,7 +45,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
     }
 
     animatedRef.current.classList.remove("hidden");
-    animatedRef.current.classList.add("inline-grid");
+    animatedRef.current.classList.add("inline-flex");
     if (isSafari26) {
       animatedRef.current.classList.add("slide-in-from-bottom-[16px]");
     } else {
@@ -57,42 +57,92 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
     <>
       <header className="flex flex-col-reverse">
         <div
-          ref={detectorRef}
-          className={"w-full h-px -translate-y-6 pointer-events-none -z-10"}
-        />
-
-        <div
           className={cn(
-            "container mx-auto sticky bottom-8 sm:bottom-16 my-8 z-10 pointer-events-none"
+            "container sticky max-sm:px-0 max-sm:mx-auto bottom-0 sm:bottom-8 -mb-8 z-10 pointer-events-none",
           )}
-          ref={stickyRef}
         >
           <div
             suppressHydrationWarning
             className={cn(
+              styles.heroWrapper,
+
               "hidden",
-              "noscript:inline-grid",
+              "noscript:inline-flex",
               "noscript:slide-in-from-bottom-1/4",
-              "px-4 -mx-4 pt-4 pb-3 -my-2 sm:px-8 sm:-mx-8 sm:pb-7 sm:-my-4",
-              "rounded-md pointer-events-auto",
+              "flex-row-reverse",
+              "gap-2",
               "dark:bg-background/75 bg-background/65 backdrop-blur-lg",
-              "motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none fade-in"
+              "motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none fade-in",
+
+              "p-8",
+              "sm:-mx-8",
+              "xl:p-0",
             )}
             ref={animatedRef}
           >
-            <h1 className="inline-block font-display font-bold text-6xl sm:text-9xl mb-4 [word-spacing:0.15em]">
-              {hero.heading}
-            </h1>
-
             <div
-              className="inline-flex flex-col gap-2 sm:text-xl font-semibold text-foreground/80 select-none link-text-wrapper"
-              dangerouslySetInnerHTML={{ __html: hero.subheading }}
-            />
+              className={cn(
+                styles.contentWrapper,
+                "flex flex-1 flex-col justify-center",
+              )}
+            >
+              <h1
+                className={cn(
+                  "inline-block",
+                  "font-display font-bold",
+                  "max-lg:mb-1 max-sm:mb-3",
+                  "text-6xl sm:text-7xl lg:text-8xl [word-spacing:0.15em]",
+                  "sm:text-nowrap",
+                  "-mt-[0.1em]",
+                )}
+              >
+                {hero.heading}
+              </h1>
+
+              <div
+                className="inline-flex flex-col gap-2 sm:text-xl font-semibold text-foreground/80 select-none link-text-wrapper"
+                dangerouslySetInnerHTML={{ __html: hero.subheading }}
+              />
+            </div>
+
+            <div className={cn("aspect-square p-4", styles.avatarWrapper)}>
+              <a
+                className="block link-text-wrapper relative w-full h-full rounded-full overflow-hidden group outline-0"
+                href="https://bartek.craft.me/info"
+                target="_blank"
+                rel="noopener"
+              >
+                <Image
+                  src="/photo.jpg"
+                  fill
+                  alt=""
+                  priority
+                  className="w-full -scale-x-100"
+                />
+                <div
+                  className={cn(
+                    "absolute inset-0 z-10 flex items-center text-center justify-center",
+                    "rounded-full overflow-hidden",
+                  )}
+                >
+                  <div className="absolute inset-0 bg-primary/60 backdrop-blur-md translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0 transition-transform duration-150"></div>
+                  <span className="relative opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-150 font-semibold text-primary-foreground text-lg underline underline-offset-2">
+                    Speaker Info
+                  </span>
+                </div>
+                <div className="absolute pointer-events-none inset-1 ring-4 ring-foreground/10 rounded-[inherit] z-10"></div>
+              </a>
+            </div>
           </div>
         </div>
 
         <div className="h-screen w-full relative pointer-events-none">
-          <div className="inline-flex gap-3 sticky top-2 left-0 m-2 p-2 z-10 rounded-md items-center backdrop-blur-lg backdrop-brightness-75 pointer-events-auto motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-500 fade-in">
+          <div
+            className={cn(
+              "inline-flex gap-3 sticky top-2 left-0 m-2 p-2 z-10 rounded-md items-center backdrop-blur-lg backdrop-brightness-75 pointer-events-auto",
+              "motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-500 fade-in",
+            )}
+          >
             <Contact
               contactMeans={contactMeans}
               className="w-8 fill-foreground-contrast text-foreground-contrast"
@@ -104,7 +154,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
               loop
               autoPlay
               playsInline
-              className="h-full w-full object-cover object-top"
+              className="h-full w-full object-cover object-top select-none"
               controls={false}
             >
               <source src="/spain.mp4" type="video/mp4" />
@@ -113,29 +163,33 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
             <figcaption
               className={cn(
                 "absolute right-2 pointer-events-auto",
-                "max-md:bottom-2 max-md:left-2",
-
-                "md:max-2xl:top-4 md:max-2xl:right-4",
-                "2xl:translate-y-full",
-
-                "max-md:opacity-0 transition-opacity duration-200 max-md:has-focus-visible:opacity-100",
-                { "max-md:opacity-100": isSticky }
+                "max-md:bottom-2 max-sm:left-6 max-md:left-14",
+                "md:top-4 md:right-4",
               )}
             >
               <a
                 href="https://www.imdb.com/title/tt0651001/"
                 target="_blank"
                 className={cn(
-                  "px-2 py-1 font-semibold underline underline-offset-2 select-auto text-foreground/30 rounded-md transition-colors duration-200 group/source",
-                  "max-2xl:text-foreground-contrast/50 max-2xl:decoration-transparent",
+                  "group/source",
+
+                  "font-semibold underline underline-offset-2",
+                  "select-auto",
+                  "rounded-md",
+
+                  "text-foreground/30 transition-colors duration-200",
                   "hover:text-link-hover hover:bg-background/75 hover:backdrop-blur-lg focus-visible:text-link-hover focus-visible:bg-background/75 focus-visible:backdrop-blur-lg",
-                  "max-md:w-full max-md:block"
+
+                  "px-2 py-1",
+                  "max-md:inline-flex max-md:flex-col",
+
+                  "select-none",
                 )}
               >
                 <span
                   className={cn(
                     "opacity-0 transition-opacity duration-200",
-                    "group-hover/source:opacity-100 group-focus-visible/source:opacity-100"
+                    "group-hover/source:opacity-100 group-focus-visible/source:opacity-100",
                   )}
                 >
                   Video source:{" "}
@@ -144,7 +198,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
                   <span className="italic">
                     Monty Python{APOSTROPHE}s Flying Circus
                   </span>{" "}
-                  {BULLET} S2 E2
+                  <span className="star-divider">{STAR}</span> S2 E2
                 </span>
               </a>
             </figcaption>
