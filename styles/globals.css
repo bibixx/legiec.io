@@ -149,7 +149,7 @@
   & .logo {
     @apply inline-block overflow-hidden mr-1.5 rounded-sm align-[-0.18em] pointer-events-none relative;
 
-    @apply text-foreground/10 dark:text-foreground/20;
+    @apply text-foreground/20;
   }
 
   & .logo::after {

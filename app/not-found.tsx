@@ -24,7 +24,7 @@ export default function NotFound() {
 
               "max-md:left-4 max-md:text-center",
 
-              "opacity-100 transition-opacity duration-200"
+              "opacity-100 transition-opacity duration-200",
             )}
           >
             <a
@@ -34,14 +34,14 @@ export default function NotFound() {
                 "px-2 py-1 font-semibold underline underline-offset-2 select-auto text-foreground/30 rounded-md transition-colors duration-200 group/source",
                 "max-2xl:text-foreground-contrast/50 max-2xl:decoration-transparent",
                 "hover:text-link-hover hover:bg-background/75 hover:backdrop-blur-lg focus-visible:text-link-hover focus-visible:bg-background/75 focus-visible:backdrop-blur-lg",
-                "max-md:w-full max-md:block"
+                "max-md:w-full max-md:block",
               )}
             >
               <span
                 className={cn(
                   "opacity-0 transition-opacity duration-200",
                   "group-hover/source:opacity-100 group-focus-visible/source:opacity-100",
-                  "hidden md:inline"
+                  "hidden md:inline",
                 )}
               >
                 Image source:{" "}
@@ -55,7 +55,7 @@ export default function NotFound() {
 
         <div className="absolute w-full bottom-8 sm:bottom-16 z-10 select-none">
           <div className={cn("container mx-auto")}>
-            <div className="inline-grid px-4 -mx-4 pt-4 pb-3 -my-2 sm:px-8 sm:-mx-8 sm:pb-7 sm:-my-4 dark:bg-background/75 bg-background/65 backdrop-blur-lg rounded-md motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none slide-in-from-bottom-1/4 fade-in">
+            <div className="inline-grid px-4 -mx-4 pt-4 pb-3 -my-2 sm:px-8 sm:-mx-8 sm:pb-7 sm:-my-4 bg-background/75 backdrop-blur-lg rounded-md motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none slide-in-from-bottom-1/4 fade-in">
               <h2 className="inline-block font-display font-bold mb-4 text-3xl sm:text-6xl [word-spacing:0.15em]">
                 The page you{APOSTROPHE}re looking for isn{APOSTROPHE}t here…
               </h2>

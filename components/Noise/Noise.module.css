@@ -80,3 +80,10 @@
   opacity: 0.05;
   filter: brightness(3) contrast(1) invert(1);
 }
+
+:global([data-no-noise="true"]) {
+  .noiseForText,
+  .noiseForRest {
+    display: none;
+  }
+}

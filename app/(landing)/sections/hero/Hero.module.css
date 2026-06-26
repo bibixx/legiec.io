@@ -1,7 +1,18 @@
-.heroWrapper {
+@reference "../../../../styles/globals.css";
+
+.heroRoot {
   --cr: 150px; /* circle radius = circle diameter / 2  (fixed) */
   --th: 100px; /* tab rise: how far the body top sits below the element top (fixed) */
   --r: 24px; /* body corner radius (fixed) */
+}
+
+.heroWrapper {
+  @apply bg-background;
+  @apply backdrop-blur-lg;
+
+  transition: background 300ms 0s;
+  transition-duration: 300ms !important;
+  transition-delay: 0 !important;
 
   margin-top: calc(var(--cr) * -2 + (var(--cr) * 2 - var(--th)));
   border-radius: var(--r);
@@ -77,8 +88,14 @@
   }
 }
 
-/* sm	@media (width >= 40rem)
-md	@media (width >= 48rem)
-lg	@media (width >= 64rem)
-xl	@media (width >= 80rem)
-2xl	@media (width >= 96rem) */
+@container scroll-state(stuck: bottom) {
+  .heroWrapper {
+    @apply bg-background/75;
+  }
+}
+
+:global([data-no-noise="true"]) {
+  .heroWrapper {
+    @apply bg-background/95;
+  }
+}

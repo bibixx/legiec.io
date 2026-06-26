@@ -40,26 +40,34 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
   const animatedRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (animatedRef.current == null) {
-      return;
-    }
+    const setValues = ($ref: HTMLDivElement | null) => {
+      if ($ref == null) {
+        return;
+      }
 
-    animatedRef.current.classList.remove("hidden");
-    animatedRef.current.classList.add("inline-flex");
-    if (isSafari26) {
-      animatedRef.current.classList.add("slide-in-from-bottom-[16px]");
-    } else {
-      animatedRef.current.classList.add("slide-in-from-bottom-1/4");
-    }
+      $ref.classList.remove("hidden");
+      $ref.classList.add("inline-flex");
+
+      if (isSafari26) {
+        $ref.classList.add("slide-in-from-bottom-[16px]");
+      } else {
+        $ref.classList.add("slide-in-from-bottom-1/4");
+      }
+    };
+
+    setValues(animatedRef.current);
   }, []);
 
   return (
     <>
-      <header className="flex flex-col-reverse">
+      <header className={cn("flex flex-col-reverse", styles.heroRoot)}>
         <div
           className={cn(
             "container sticky max-sm:px-0 max-sm:mx-auto bottom-0 sm:bottom-8 -mb-8 z-10 pointer-events-none",
           )}
+          style={{
+            containerType: "scroll-state",
+          }}
         >
           <div
             suppressHydrationWarning
@@ -71,8 +79,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
               "noscript:slide-in-from-bottom-1/4",
               "flex-row-reverse",
               "gap-2",
-              "dark:bg-background/75 bg-background/65 backdrop-blur-lg",
-              "motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 transition-none fade-in",
+              "motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 fade-in",
 
               "p-8",
               "sm:-mx-8",
@@ -105,7 +112,12 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
               />
             </div>
 
-            <div className={cn("aspect-square p-4", styles.avatarWrapper)}>
+            <div
+              className={cn(
+                "aspect-square p-4 rounded-full",
+                styles.avatarWrapper,
+              )}
+            >
               <a
                 className="block link-text-wrapper relative w-full h-full rounded-full overflow-hidden group outline-0"
                 href="https://bartek.craft.me/info"
