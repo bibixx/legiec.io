@@ -4,18 +4,11 @@ import styles from "./Noise.module.css";
 import animationStyles from "./Noise.animation.module.css";
 import noiseSrc from "@/assets/noise.jpg";
 import { cn } from "@/lib/utils";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useRef } from "react";
 import { randomBoolean, randomNumber } from "@/lib/random";
 import { safeParseInt } from "@/lib/number";
 
 export const Noise = () => {
-  useEffect(() => {
-    let userAgent = navigator.userAgent;
-    if (userAgent.match(/firefox|fxios/i)) {
-      document.body.setAttribute("data-no-noise", "true");
-    }
-  }, []);
-
   const noiseForTextRef = useRef<HTMLDivElement>(null);
   const noiseForRestRef = useRef<HTMLDivElement>(null);
 

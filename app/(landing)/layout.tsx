@@ -39,6 +39,12 @@ export const metadata: Metadata = {
   },
 };
 
+const NO_NOISE_SCRIPT = /* js */ `
+if (/firefox|fxios/i.test(navigator.userAgent)) {
+  document.documentElement.setAttribute("data-no-noise","true");
+}
+`;
+
 export default function LandingLayout({
   children,
 }: {
@@ -51,6 +57,9 @@ export default function LandingLayout({
         className={cn(clashDisplay.variable, inter.variable, "dark")}
         suppressHydrationWarning
       >
+        <head>
+          <script dangerouslySetInnerHTML={{ __html: NO_NOISE_SCRIPT }} />
+        </head>
         <Matomo />
         <body>
           {children}

@@ -15,6 +15,7 @@
   pointer-events: none;
   z-index: 99999999;
   user-select: none;
+  @apply no-noise:hidden;
 }
 
 .background {
@@ -79,11 +80,4 @@
 .noiseForRest .noiseImageWrapper {
   opacity: 0.05;
   filter: brightness(3) contrast(1) invert(1);
-}
-
-:global([data-no-noise="true"]) {
-  .noiseForText,
-  .noiseForRest {
-    display: none;
-  }
 }

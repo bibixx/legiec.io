@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant no-noise (&:is(:root[data-no-noise="true"] *));
 
 @theme {
   --color-border: hsl(var(--border));

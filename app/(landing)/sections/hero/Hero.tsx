@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Contact } from "../contact/Contact";
 import { ContactMeans, Hero as CMSHero } from "@/lib/cms";
 import { useLayoutEffect, useRef } from "react";
+import { useStuckBottom } from "@/lib/useStuckBottom";
 import styles from "./Hero.module.css";
 import Image from "next/image";
 
@@ -38,6 +39,10 @@ interface HeroProps {
 }
 export const Hero = ({ contactMeans, hero }: HeroProps) => {
   const animatedRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+
+  useStuckBottom(sentinelRef, stickyRef);
 
   useLayoutEffect(() => {
     const setValues = ($ref: HTMLDivElement | null) => {
@@ -61,13 +66,19 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
   return (
     <>
       <header className={cn("flex flex-col-reverse", styles.heroRoot)}>
+        {/* col-reverse → this first child renders at the visual BOTTOM, just
+            under the card; its trip across the viewport marks stuck ↔ settled. */}
         <div
+          ref={sentinelRef}
+          aria-hidden
+          className="h-px pointer-events-none"
+        />
+        <div
+          ref={stickyRef}
           className={cn(
             "container sticky max-sm:px-0 max-sm:mx-auto bottom-0 sm:bottom-8 -mb-8 z-10 pointer-events-none",
+            styles.heroStickyRoot,
           )}
-          style={{
-            containerType: "scroll-state",
-          }}
         >
           <div
             suppressHydrationWarning
@@ -119,7 +130,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
               )}
             >
               <a
-                className="block link-text-wrapper relative w-full h-full rounded-full overflow-hidden group outline-0"
+                className="block link-text-wrapper relative w-full h-full rounded-full overflow-hidden group/photo outline-0"
                 href="https://bartek.craft.me/info"
                 target="_blank"
                 rel="noopener"
@@ -137,8 +148,8 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
                     "rounded-full overflow-hidden",
                   )}
                 >
-                  <div className="absolute inset-0 bg-primary/60 backdrop-blur-md translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0 transition-transform duration-150"></div>
-                  <span className="relative opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-150 font-semibold text-primary-foreground text-lg underline underline-offset-2">
+                  <div className="absolute inset-0 bg-primary/60 backdrop-blur-md translate-y-full group-hover/photo:translate-y-0 group-focus-visible/photo:translate-y-0 transition-transform duration-150"></div>
+                  <span className="relative opacity-0 group-hover/photo:opacity-100 group-focus-visible/photo:opacity-100 transition-opacity duration-150 font-semibold text-primary-foreground text-lg underline underline-offset-2">
                     Speaker Info
                   </span>
                 </div>

@@ -7,12 +7,14 @@
 }
 
 .heroWrapper {
-  @apply bg-background;
   @apply backdrop-blur-lg;
+  @apply bg-background/75 no-noise:bg-background/95;
 
-  transition: background 300ms 0s;
-  transition-duration: 300ms !important;
-  transition-delay: 0 !important;
+  .heroStickyRoot[data-settled] & {
+    @apply bg-background/90;
+  }
+
+  transition: background 300ms 0s var(--default-transition-timing-function);
 
   margin-top: calc(var(--cr) * -2 + (var(--cr) * 2 - var(--th)));
   border-radius: var(--r);
@@ -85,17 +87,5 @@
     width: 100%;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-  }
-}
-
-@container scroll-state(stuck: bottom) {
-  .heroWrapper {
-    @apply bg-background/75;
-  }
-}
-
-:global([data-no-noise="true"]) {
-  .heroWrapper {
-    @apply bg-background/95;
   }
 }
