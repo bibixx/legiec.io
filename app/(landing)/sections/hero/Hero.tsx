@@ -180,7 +180,7 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
               className="h-full w-full object-cover object-top select-none"
               controls={false}
             >
-              <source src="/spain.mp4" type="video/mp4" />
+              <source src="/spain.mp4" type="video/mp4;codecs=hvc1" />
               <source src="/spain.webm" type="video/webm;codecs=vp9" />
             </video>
             <figcaption
