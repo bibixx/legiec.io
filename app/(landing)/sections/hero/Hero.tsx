@@ -64,170 +64,179 @@ export const Hero = ({ contactMeans, hero }: HeroProps) => {
   }, []);
 
   return (
-    <>
-      <header className={cn("flex flex-col-reverse", styles.heroRoot)}>
-        {/* col-reverse → this first child renders at the visual BOTTOM, just
+    <header
+      className={cn("flex flex-col-reverse", styles.heroRoot)}
+      ref={stickyRef}
+    >
+      {/* col-reverse → this first child renders at the visual BOTTOM, just
             under the card; its trip across the viewport marks stuck ↔ settled. */}
+      <div ref={sentinelRef} aria-hidden className="h-px pointer-events-none" />
+      <div
+        className={cn(
+          "container sticky",
+          "z-10 pointer-events-none",
+
+          "bottom-4",
+          "max-sm:px-4",
+
+          // Above Mobile
+          "sm:bottom-8",
+
+          // "max-sm:px-0 max-sm:mx-auto",
+          // "bottom-0",
+          // "sm:bottom-8 -mb-8",
+        )}
+      >
         <div
-          ref={sentinelRef}
-          aria-hidden
-          className="h-px pointer-events-none"
-        />
-        <div
-          ref={stickyRef}
+          suppressHydrationWarning
           className={cn(
-            "container sticky max-sm:px-0 max-sm:mx-auto bottom-0 sm:bottom-8 -mb-8 z-10 pointer-events-none",
-            styles.heroStickyRoot,
+            styles.heroWrapper,
+
+            "hidden",
+            "noscript:inline-flex",
+            "noscript:slide-in-from-bottom-1/4",
+            "flex-row-reverse",
+            "gap-2",
+            "motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 fade-in",
+
+            "max-sm:px-4",
+            "max-sm:py-6",
+            "p-8",
+            "sm:-mx-8",
+            "xl:p-0",
           )}
+          ref={animatedRef}
         >
           <div
-            suppressHydrationWarning
             className={cn(
-              styles.heroWrapper,
-
-              "hidden",
-              "noscript:inline-flex",
-              "noscript:slide-in-from-bottom-1/4",
-              "flex-row-reverse",
-              "gap-2",
-              "motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-300 fade-in",
-
-              "p-8",
-              "sm:-mx-8",
-              "xl:p-0",
-            )}
-            ref={animatedRef}
-          >
-            <div
-              className={cn(
-                styles.contentWrapper,
-                "flex flex-1 flex-col justify-center",
-              )}
-            >
-              <h1
-                className={cn(
-                  "inline-block",
-                  "font-display font-bold",
-                  "max-lg:mb-1 max-sm:mb-3",
-                  "text-6xl sm:text-7xl lg:text-8xl [word-spacing:0.15em]",
-                  "sm:text-nowrap",
-                  "-mt-[0.1em]",
-                )}
-              >
-                {hero.heading}
-              </h1>
-
-              <div
-                className="inline-flex flex-col gap-2 sm:text-xl font-semibold text-foreground/80 select-none link-text-wrapper"
-                dangerouslySetInnerHTML={{ __html: hero.subheading }}
-              />
-            </div>
-
-            <div
-              className={cn(
-                "aspect-square p-4 rounded-full",
-                styles.avatarWrapper,
-              )}
-            >
-              <a
-                className="block link-text-wrapper relative w-full h-full rounded-full overflow-hidden group/photo outline-0"
-                href="https://bartek.craft.me/info"
-                target="_blank"
-                rel="noopener"
-              >
-                <Image
-                  src="/photo.jpg"
-                  fill
-                  alt=""
-                  priority
-                  className="w-full -scale-x-100"
-                />
-                <div
-                  className={cn(
-                    "absolute inset-0 z-10 flex items-center text-center justify-center",
-                    "rounded-full overflow-hidden",
-                  )}
-                >
-                  <div className="absolute inset-0 bg-primary/60 backdrop-blur-md translate-y-full group-hover/photo:translate-y-0 group-focus-visible/photo:translate-y-0 transition-transform duration-150"></div>
-                  <span className="relative opacity-0 group-hover/photo:opacity-100 group-focus-visible/photo:opacity-100 transition-opacity duration-150 font-semibold text-primary-foreground text-lg underline underline-offset-2">
-                    Speaker Info
-                  </span>
-                </div>
-                <div className="absolute pointer-events-none inset-1 ring-4 ring-foreground/10 rounded-[inherit] z-10"></div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="h-screen w-full relative pointer-events-none">
-          <div
-            className={cn(
-              "inline-flex gap-3 sticky top-2 left-0 m-2 p-2 z-10 rounded-md items-center backdrop-blur-lg backdrop-brightness-75 pointer-events-auto",
-              "motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-500 fade-in",
+              styles.contentWrapper,
+              "flex flex-1 flex-col justify-center",
             )}
           >
-            <Contact
-              contactMeans={contactMeans}
-              className="w-8 fill-foreground-contrast text-foreground-contrast"
+            <h1
+              className={cn(
+                "inline-block",
+                "font-display font-bold",
+                "max-lg:mb-1 max-sm:mb-3",
+                "text-6xl sm:text-7xl lg:text-8xl [word-spacing:0.15em]",
+                "sm:text-nowrap",
+                "-mt-[0.1em]",
+              )}
+            >
+              {hero.heading}
+            </h1>
+
+            <div
+              className="inline-flex flex-col gap-2 sm:text-xl font-semibold text-foreground/80 select-none link-text-wrapper"
+              dangerouslySetInnerHTML={{ __html: hero.subheading }}
             />
           </div>
-          <figure className="absolute top-0 left-0 h-full w-full">
-            <video
-              muted
-              loop
-              autoPlay
-              playsInline
-              className="h-full w-full object-cover object-top select-none"
-              controls={false}
+
+          <div
+            className={cn(
+              "aspect-square p-4 rounded-full",
+              styles.avatarWrapper,
+            )}
+          >
+            <a
+              className="block link-text-wrapper relative w-full h-full rounded-full overflow-hidden group/photo outline-0"
+              href="https://bartek.craft.me/info"
+              target="_blank"
+              rel="noopener"
             >
-              <source src="/spain.mp4" type="video/mp4;codecs=hvc1" />
-              <source src="/spain.webm" type="video/webm;codecs=vp9" />
-            </video>
-            <figcaption
-              className={cn(
-                "absolute right-2 pointer-events-auto",
-                "max-md:bottom-2 max-sm:left-6 max-md:left-14",
-                "md:top-4 md:right-4",
-              )}
-            >
-              <a
-                href="https://www.imdb.com/title/tt0651001/"
-                target="_blank"
+              <Image
+                src="/photo.jpg"
+                fill
+                alt=""
+                priority
+                className="w-full -scale-x-100"
+              />
+              <div
                 className={cn(
-                  "group/source",
-
-                  "font-semibold underline underline-offset-2",
-                  "select-auto",
-                  "rounded-md",
-
-                  "text-foreground/30 transition-colors duration-200",
-                  "hover:text-link-hover hover:bg-background/75 hover:backdrop-blur-lg focus-visible:text-link-hover focus-visible:bg-background/75 focus-visible:backdrop-blur-lg",
-
-                  "px-2 py-1",
-                  "max-md:inline-flex max-md:flex-col",
-
-                  "select-none",
+                  "absolute inset-0 z-10 flex items-center text-center justify-center",
+                  "rounded-full overflow-hidden",
                 )}
               >
-                <span
-                  className={cn(
-                    "opacity-0 transition-opacity duration-200",
-                    "group-hover/source:opacity-100 group-focus-visible/source:opacity-100",
-                  )}
-                >
-                  Video source:{" "}
+                <div className="absolute inset-0 bg-primary/60 backdrop-blur-md translate-y-full group-hover/photo:translate-y-0 group-focus-visible/photo:translate-y-0 transition-transform duration-150"></div>
+                <span className="relative opacity-0 group-hover/photo:opacity-100 group-focus-visible/photo:opacity-100 transition-opacity duration-150 font-semibold text-primary-foreground text-lg underline underline-offset-2">
+                  Speaker Info
                 </span>
-                <span className="text-nowrap">
-                  <span className="italic">
-                    Monty Python{APOSTROPHE}s Flying Circus
-                  </span>{" "}
-                  <span className="star-divider">{STAR}</span> S2 E2
-                </span>
-              </a>
-            </figcaption>
-          </figure>
+              </div>
+              <div className="absolute pointer-events-none inset-1 ring-4 ring-foreground/10 rounded-[inherit] z-10"></div>
+            </a>
+          </div>
         </div>
-      </header>
-    </>
+      </div>
+
+      <div className="h-screen w-full relative pointer-events-none">
+        <div
+          className={cn(
+            "inline-flex gap-3 sticky top-2 left-0 m-2 p-2 z-10 rounded-md items-center backdrop-blur-lg backdrop-brightness-75 pointer-events-auto",
+            "motion-reduce:animate-none animate-in fill-mode-both duration-500 delay-500 fade-in",
+          )}
+        >
+          <Contact
+            contactMeans={contactMeans}
+            className="w-8 fill-foreground-contrast text-foreground-contrast"
+          />
+        </div>
+        <figure className="absolute top-0 left-0 h-full w-full">
+          <video
+            muted
+            loop
+            autoPlay
+            playsInline
+            className="h-full w-full object-cover object-top select-none"
+            controls={false}
+          >
+            <source src="/spain.mp4" type="video/mp4;codecs=hvc1" />
+            <source src="/spain.webm" type="video/webm;codecs=vp9" />
+          </video>
+          <figcaption
+            className={cn(
+              styles.figcaption,
+              "absolute right-2 pointer-events-auto",
+              "max-md:bottom-2 max-sm:left-6 max-md:left-14",
+              "md:top-4 md:right-4",
+            )}
+          >
+            <a
+              href="https://www.imdb.com/title/tt0651001/"
+              target="_blank"
+              className={cn(
+                "group/source",
+
+                "font-semibold underline underline-offset-2",
+                "select-auto",
+                "rounded-md",
+
+                "text-foreground/30 transition-colors duration-200",
+                "hover:text-link-hover hover:bg-background/75 hover:backdrop-blur-lg focus-visible:text-link-hover focus-visible:bg-background/75 focus-visible:backdrop-blur-lg",
+
+                "px-2 py-1",
+                "max-md:inline-flex max-md:flex-col",
+
+                "select-none",
+              )}
+            >
+              <span
+                className={cn(
+                  "opacity-0 transition-opacity duration-200",
+                  "group-hover/source:opacity-100 group-focus-visible/source:opacity-100",
+                )}
+              >
+                Video source:{" "}
+              </span>
+              <span className="text-nowrap">
+                <span className="italic">
+                  Monty Python{APOSTROPHE}s Flying Circus
+                </span>{" "}
+                <span className="star-divider">{STAR}</span> S2 E2
+              </span>
+            </a>
+          </figcaption>
+        </figure>
+      </div>
+    </header>
   );
 };

@@ -10,7 +10,7 @@
   @apply backdrop-blur-lg;
   @apply bg-background/75 no-noise:bg-background/95;
 
-  .heroStickyRoot[data-settled] & {
+  .heroRoot[data-settled] & {
     @apply bg-background/90;
   }
 
@@ -63,6 +63,16 @@
   flex: 0 0 calc(var(--cr) * 2);
 }
 
+.figcaption {
+  @apply transition-opacity duration-200;
+
+  @apply opacity-0 md:opacity-100;
+}
+
+.heroRoot[data-settled] .figcaption {
+  opacity: 1;
+}
+
 @media (width < 80rem) {
   .heroWrapper {
     --th: 0;
@@ -85,7 +95,5 @@
 @media (width < 40rem) {
   .heroWrapper {
     width: 100%;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
   }
 }
